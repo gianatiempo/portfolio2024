@@ -1,0 +1,32 @@
+{
+	"name": "gianatiempo-portfolio-v2",
+	"description": "Ariel Gianatiempo Portfolio, Second Attempt!",
+	"version": "0.0.2",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "prettier -w . --cache"
+	},
+	"dependencies": {
+		"astro": "^4.11.0",
+		"tailwindcss": "^3.4.4"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.7.0",
+		"@astrojs/mdx": "^3.1.0",
+		"@astrojs/rss": "^4.0.6",
+		"@astrojs/sitemap": "^3.1.5",
+		"@astrojs/tailwind": "^5.1.0",
+		"@tailwindcss/typography": "^0.5.13",
+		"prettier": "^3.3.2",
+		"prettier-plugin-astro": "^0.14.0",
+		"prettier-plugin-organize-imports": "^3.2.4",
+		"prettier-plugin-tailwindcss": "^0.6.5",
+		"typescript": "^5.5.2"
+	}
+}

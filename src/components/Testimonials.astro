@@ -1,0 +1,18 @@
+---
+import Container from './base/Container.astro'
+import { testimonialData } from '../lib/consts'
+import TestimonialCard from '@components/cards/TestimonialCard.astro'
+---
+
+<section class="scroll-mt-24 text-zinc-600 dark:text-zinc-300" id="testimonials">
+	<Container>
+		<div class="pb-8 text-center">
+			<h2 class="text-3xl font-semibold text-zinc-950 dark:text-white md:text-4xl">Colleagues' Opinions</h2>
+			<p class="mt-4 text-zinc-600 dark:text-zinc-400">What's it like working with me?</p>
+		</div>
+
+		<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+			{testimonialData.map((t) => <TestimonialCard image={t.image} url={t.url} name={t.name} position={t.position} message={t.message} />)}
+		</div>
+	</Container>
+</section>

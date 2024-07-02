@@ -1,0 +1,58 @@
+---
+import { links } from '@lib/consts'
+import Container from './components/base/Container.astro'
+
+type Link = {
+	title: string
+	url: string
+}
+
+const externalLinks = [
+	{ title: 'Linkedin', url: 'https://www.linkedin.com/in/gianatiempo/' },
+	{ title: 'Github', url: 'https://github.com/gianatiempo' }
+]
+---
+
+<footer class="w-full py-16">
+	<Container>
+		<ul role="list" class="flex flex-col items-center justify-center gap-4 py-1 sm:flex-row sm:gap-8">
+			{
+				links.map((link) => (
+					<li role="listitem">
+						<a href={link.to} class="text-zinc-600 transition hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white">
+							{link.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		<ul role="list" class="flex flex-col items-center justify-center gap-4 py-4 sm:flex-row sm:gap-8">
+			{
+				externalLinks.map((link: Link) => (
+					<li role="listitem">
+						<a href={link.url} target="_blank" class="text-zinc-600 transition hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white">
+							{link.title}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</Container>
+	<div class="-mb-2 flex flex-row items-center justify-center overflow-hidden text-sm font-medium text-zinc-700 dark:text-zinc-300">
+		Built with ☕️ and 🍪 by
+		<div class="mt-5 flex items-start justify-center gap-2 text-center font-semibold text-zinc-950 dark:text-white sm:gap-1">
+			<div class="block">
+				<div class="block pb-2">Ariel Gianatiempo</div>
+				<div class="-mt-5 grow overflow-hidden">
+					<svg aria-hidden="true" class="w-32" height="30" viewBox="0 0 283 22" fill="none" xmlns="http://www.w3.org/2000/svg"
+						><path d="M1.24715 19.3744C72.4051 10.3594 228.122 -4.71194 281.724 7.12332" stroke="url(#paint0_linear_pl)" stroke-width="4"></path><defs
+							><linearGradient id="paint0_linear_pl" x1="282" y1="5.49999" x2="40" y2="13" gradientUnits="userSpaceOnUse"
+								><stop stop-color="#facc15"></stop><stop offset="1" stop-color="#a855f7"></stop></linearGradient
+							></defs
+						></svg
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

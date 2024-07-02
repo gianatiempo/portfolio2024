@@ -1,0 +1,21 @@
+---
+import BackToPrevious from '@components/blog/BackToPrevious.astro'
+import Container from '@components/base/Container.astro'
+import { SITE } from '@lib/consts'
+import Layout from 'Layout.astro'
+---
+
+<Layout title="404" description={SITE.DESCRIPTION}>
+	<main class="space-y-16 overflow-clip pb-40 sm:space-y-28 lg:space-y-32">
+		<section class="relative h-screen scroll-mt-24 overflow-hidden" id="404">
+			<Container>
+				<div class="grid place-items-center gap-3 pt-24 sm:pt-40 lg:pt-44">
+					<h4 class="animate text-2xl font-semibold text-black dark:text-white">404: Page not found</h4>
+					<span class="animate">
+						<BackToPrevious href="/">Go to home page</BackToPrevious>
+					</span>
+				</div>
+			</Container>
+		</section>
+	</main>
+</Layout>

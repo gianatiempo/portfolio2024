@@ -1,0 +1,8 @@
+**/*.mdx
+**/generated/
+src/samples/
+**/snippet.*
+/dist
+/node_modules
+/public
+.astro/

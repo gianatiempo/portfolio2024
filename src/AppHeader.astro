@@ -1,0 +1,71 @@
+---
+import ThemeIcon from '@components/base/ThemeIcon.astro'
+import Container from './components/base/Container.astro'
+import Frame from './components/base/Frame.astro'
+import { links } from '@lib/consts'
+---
+
+<header>
+	<nav class="absolute z-50 w-full lg:bg-transparent dark:lg:bg-transparent">
+		<Container>
+			<div class="absolute right-4 top-4 z-[100] text-zinc-600 dark:text-zinc-300">
+				<ul class="relative rounded-md border border-white/50 bg-zinc-950/5 ring-1 ring-zinc-950/10 backdrop-blur-2xl dark:border-white/5 dark:bg-white/5 dark:ring-zinc-950/25">
+					<li>
+						<span class="block rounded-full px-4 py-2 transition sm:p-2 sm:px-4 md:py-[10px]">
+							<ThemeIcon />
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="relative py-4">
+				<div class="fixed inset-x-0 m-auto hidden size-fit sm:block">
+					<Frame>
+						<div class="relative w-full text-zinc-600 dark:text-zinc-300">
+							<ul class="flex flex-row gap-0 text-xs tracking-wide sm:gap-3 md:gap-6 md:text-sm">
+								{
+									links.map((link) => (
+										<li>
+											<a href={link.to} class="block rounded-full p-1 transition md:px-2 lg:px-4">
+												<span>{link.label}</span>
+											</a>
+										</li>
+									))
+								}
+							</ul>
+						</div>
+					</Frame>
+				</div>
+				<div class="sm:hidden">
+					<div class="group">
+						<button
+							type="button"
+							class="rounded-md border border-white/50 bg-zinc-950/5 p-2 text-zinc-600 ring-1 ring-zinc-950/10 backdrop-blur-2xl transition focus:outline-none dark:border-white/5 dark:bg-white/5 dark:text-zinc-300 dark:ring-zinc-950/25 md:px-4"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"></path>
+							</svg>
+						</button>
+
+						<div
+							class="invisible absolute left-1 mt-1 w-40 origin-top-left divide-y rounded-md border border-white/50 bg-zinc-950/5 p-2 opacity-0 shadow-lg ring-1 ring-zinc-950/10 backdrop-blur-2xl transition duration-300 group-hover:visible group-hover:opacity-100 dark:border-white/5 dark:bg-white/5 dark:bg-zinc-950 dark:ring-zinc-950/25"
+						>
+							<div class="relative w-full text-zinc-600 dark:text-zinc-300">
+								<ul class="flex flex-col gap-0 text-xs tracking-wide sm:gap-3 md:gap-6 md:text-sm">
+									{
+										links.map((link) => (
+											<li>
+												<a href={link.to} class="block rounded-full p-1 transition md:px-4">
+													<span>{link.label}</span>
+												</a>
+											</li>
+										))
+									}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</Container>
+	</nav>
+</header>

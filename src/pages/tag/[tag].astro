@@ -1,0 +1,35 @@
+---
+import Container from '@components/base/Container.astro'
+import Posts from '@components/blog/Posts.astro'
+import { getTaxonomy, getSinglePage, taxonomyFilter, sortByDate, humanize } from '@lib/utils'
+import Layout from 'Layout.astro'
+
+export async function getStaticPaths() {
+	const tags = await getTaxonomy('post', 'tags')
+
+	return tags.map((tag) => ({ params: { tag } }))
+}
+
+const { tag } = Astro.params
+
+const posts = await getSinglePage('post')
+const filterByTags = taxonomyFilter(posts, 'tags', tag)
+const sortedPosts = sortByDate(filterByTags)
+
+const title = humanize(tag || '')
+---
+
+<Layout title={title} description={`Showing Posts From #${title}`} type="blog">
+	<main class="space-y-16 overflow-clip sm:space-y-28 lg:space-y-32">
+		<section class="relative min-h-screen scroll-mt-24 overflow-hidden">
+			<Container>
+				<div class="relative pt-24 sm:pt-40 lg:pt-44">
+					<div class="pb-8 text-center">
+						<h2 class="text-3xl font-semibold text-zinc-950 dark:text-white md:text-4xl">Showing Posts For #{title}</h2>
+					</div>
+					<Posts list={sortedPosts} />
+				</div>
+			</Container>
+		</section>
+	</main>
+</Layout>

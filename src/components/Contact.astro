@@ -1,0 +1,27 @@
+---
+import Frame from '@components/base/Frame.astro'
+import Container from './base/Container.astro'
+import BaseCard from '@components/base/BaseCard.astro'
+---
+
+<div class="relative scroll-mt-24 text-zinc-600 dark:text-zinc-300" id="contact">
+	<div
+		aria-hidden
+		class="pointer-events-none absolute left-1/2 top-0 z-10 h-[800px] w-[1000px] -translate-x-1/2 -translate-y-1/3 opacity-20 [background-image:radial-gradient(theme(colors.zinc.500),transparent_50%)] dark:opacity-35"
+	>
+	</div>
+	<Container>
+		<div class="relative">
+			<div class="mt-6 space-y-6">
+				<h2 class="text-center text-4xl font-bold text-zinc-800 dark:text-white md:text-5xl">Get to know me</h2>
+				<p class="text-center text-lg text-zinc-600 dark:text-zinc-300">Let's schedule a meeting to discuss your project. I am available for freelance work.</p>
+
+				<div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-4 md:pb-24">
+					<a href="https://calendly.com/gianatiempo/30min" target="_blank" class="text-zinc-800 dark:text-white md:text-xl">
+						<BaseCard>Say Hi! 👋</BaseCard>
+					</a>
+				</div>
+			</div>
+		</div>
+	</Container>
+</div>
