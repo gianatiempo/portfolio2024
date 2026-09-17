@@ -1,36 +1,68 @@
 import { defineCollection, z } from 'astro:content'
 
-const postsCollection = defineCollection({
-	schema: ({ image }) =>
-		z.object({
-			id: z.string().optional(),
-			title: z.string(),
-			meta_title: z.string().optional(),
-			description: z.string().optional(),
-			date: z.date(),
-			cover: image().refine((img) => img.width >= 1080, { message: 'Cover image must be at least 1080 pixels wide!' }),
-			coverAlt: z.string().default('Post Image'),
-			coverCredit: z.string().default(''),
-			author: z.string().default('Ariel Gianatiempo'),
-			categories: z.array(z.string()).default(['others']),
-			tags: z.array(z.string()).default(['others']),
-			draft: z.boolean().optional()
-		})
+/* One collection. One author. One river.
+ *
+ * `post` and `project` used to be two collections, which meant two schemas,
+ * two index pages, two row components, two detail templates and two entries in
+ * the nav — all to express a distinction nobody reading the site cares about.
+ * A project write-up *is* a piece of writing about a build. Filing it
+ * elsewhere said the opposite, and it split the one thing on the site that is
+ * supposed to accumulate: evidence that the work is still happening.
+ *
+ * So: `writing`. Everything dated, everything ongoing, newest first. Posts and
+ * projects both still exist and are still called that — they are `form`s of
+ * one entry rather than two kinds of object, which is a presentation detail
+ * and not a schema.
+ */
+
+/* A beat is a facet of one publication: the same person covering a different
+   part of the stack. Separate `frontend` and `ai` collections would file them
+   as if they were different jobs, which they are not — the front end and the
+   server have been two ends of one job since the job existed. */
+export const BEATS = ['interface', 'systems', 'trajectory'] as const
+
+/* Three forms, one schema.
+ *
+ *   post     the long version, worked out properly, usually with a tl;dr
+ *   note     short — a thing learned, a link with an opinion, a snag and its fix
+ *   project  a thing that exists, with a status and a stack
+ *
+ * `note` exists because publishing weekly while learning is the whole point,
+ * and a format that only accommodates two-thousand-word posts quietly stops
+ * you posting. `project` is a post with a state: it was its own collection
+ * until the merge, and the only thing it ever needed that a post did not was
+ * a status and a stack in the rail.
+ *
+ * None of the three gets its own collection, its own route or its own
+ * template — only its own row treatment and its own rail. */
+export const FORMS = ['post', 'note', 'project'] as const
+
+const writing = defineCollection({
+	schema: z.object({
+		title: z.string(),
+		description: z.string().optional(),
+		date: z.date(),
+		author: z.string().default('Ariel Gianatiempo'),
+		beat: z.enum(BEATS).default('trajectory'),
+		form: z.enum(FORMS).default('post'),
+
+		/* Projects only, and optional even there — `status` is honest by design.
+		   Most of these will be in progress for a long time, and saying so is
+		   worth more than implying otherwise by omission. */
+		status: z.string().optional(),
+		stack: z.array(z.string()).default([]),
+		demoURL: z.string().optional(),
+
+		/* Where the code is, when there is code. Renders as a repository card,
+		   so an entry about building something can point at the thing it built
+		   without the link being buried in a paragraph. Not project-only: a post
+		   about a refactor frequently has a repo behind it. */
+		repoURL: z.string().optional(),
+
+		categories: z.array(z.string()).default(['others']),
+		tags: z.array(z.string()).default(['others']),
+		draft: z.boolean().optional()
+	})
 })
 
-const projectsCollection = defineCollection({
-	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			date: z.date(),
-			cover: image().refine((img) => img.width >= 1080, { message: 'Cover image must be at least 1080 pixels wide!' }),
-			coverAlt: z.string().default('Project Image'),
-			author: z.string().default('Ariel Gianatiempo'),
-			demoURL: z.string().optional(),
-			repoURL: z.string().optional(),
-			draft: z.boolean().optional()
-		})
-})
-
-export const collections = { post: postsCollection, project: projectsCollection }
+export const collections = { writing }

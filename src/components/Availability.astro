@@ -1,0 +1,21 @@
+---
+import { availability } from '@lib/consts'
+
+/* The first filter anyone applies — a recruiter, a founder, an ex-colleague
+ * with a lead — and in v2 it was the last thing on the page, buried in the
+ * closing paragraph of Contact. It appears in the hero, in every post's footer
+ * and in Contact now, from one source in consts.
+ */
+
+interface Props {
+	class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<p class:list={['label flex flex-wrap items-center gap-x-3 gap-y-1.5', className]}>
+	<span class="beat text-accent">{availability.status}</span>
+	<span class="normal-case tracking-[0.01em] text-primary">{availability.open}</span>
+	<span class="normal-case tracking-[0.01em] text-tertiary">· {availability.where}</span>
+</p>
