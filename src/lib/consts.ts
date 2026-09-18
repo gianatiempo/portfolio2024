@@ -3,7 +3,7 @@ import type { Site } from '../types'
 export const SITE: Site = {
 	TITLE: 'Ariel Gianatiempo',
 	DESCRIPTION:
-		'Senior Front-End engineer in Málaga. Nineteen years across both ends of the stack: eight on the server in Java, eleven in the browser, and Front-End architecture for Openbank, J.P. Morgan and V3 Cybersecurity. Currently picking the server half back up in Python, and building features with a model inside them.',
+		'Senior Front-End engineer in Málaga. Nineteen years across both ends of the stack: Eight years of web development with Java, eleven in the browser, and Front-End architecture for Openbank, J.P. Morgan and V3 Cybersecurity. Currently picking the server half back up in Python, and building features with a model inside them.',
 	EMAIL: 'gianatiempo@gmail.com',
 	IMAGE: '/og.png',
 	TYPE: 'website',
@@ -88,20 +88,18 @@ export const practice = [
 		label: 'Foundation',
 		status: 'Eight years',
 		heading: 'Web developer, Java and painful UI',
-		plain: 'I started here, learning the basics and always going after the ticket that involved the UI.',
-		body: "Java didn't have much of a UI in those days, and Wicket was the tool for the job. It was not pretty, and if something isn't pretty you're a lot less likely to love it.",
+		plain: 'Java, Spring, Hibernate and a lot of MySQL. APIs, new features and legacy migrations for telcos, an airline and a long list of enterprise clients I could not put in the right order today. Somewhere in there I started volunteering for every ticket that touched the UI, which is pretty much how the next eleven years happened.',
 		figures: [
 			{ value: '8', label: 'Years of Java' },
 			{ value: '2007', label: 'Where it all started' }
 		],
-		keywords: ['Java', 'Wicket', 'SVN']
+		keywords: ['Java', 'Spring', 'Hibernate', 'MySQL', 'Wicket', 'SVN']
 	},
 	{
 		label: 'Blooming',
 		status: 'Eleven years',
 		heading: 'From jQuery to Front-End architecture that holds',
 		plain: 'I build the parts of an application people actually see and use. Started in telcos, ended up enjoying banks... faster, more dynamic, wider.',
-		body: 'React and TypeScript in places where everyone else still sees COBOL. Banking tooling at J.P. Morgan, security products at V3 Cybersecurity. Mostly migrations, rewrites, and arguing about standards.',
 		figures: [
 			{ value: '11', label: 'Years on the Front-End' },
 			{ value: '60%', label: 'Faster after a rewrite' },
@@ -114,7 +112,6 @@ export const practice = [
 		status: 'Reaching for it',
 		heading: 'Both ends of the stack, on purpose this time',
 		plain: 'Getting properly good at both halves of the job, the server one included.',
-		body: 'I started out Fullstack building web applications and I am finding my way back to it, so this strand is the aim rather than a badge. Four courses so far in 2026, Python and AI development, and nineteen years at my back while I do it. With AI as an ally, experience beats knowing every language, tool and trending library. Ask me again in a year.',
 		figures: [
 			{ value: '2', label: 'Ends of the stack' },
 			{ value: '4', label: 'Courses in 2026' }
@@ -123,15 +120,14 @@ export const practice = [
 	},
 	{
 		label: 'Building',
-		status: 'Shipping now',
+		status: 'Day one',
 		heading: 'AI as an engineer, not a user',
-		plain: 'Shipping real things with Python and AI inside them, because that is the only way I actually get there.',
-		body: 'Getting my hands dirty with Python and every AI-related piece of logic, building the next generation of apps for companies and the people using them. A full product rewrite at V3 that I am building on my own, due to launch at the end of 2026, and this site. AI is the only reason one person can do either.',
+		plain: "Small things, written in Python, with a model doing actual work inside them instead of just helping me type. Retrieval, evals, streaming responses... that list is what I'm working through right now, not a set of things I already know. First ones go up on GitHub shortly, and they will look exactly like what they are.",
 		figures: [
 			{ value: '1', label: 'Product rewrite, solo' },
 			{ value: '2026', label: 'Launch target' }
 		],
-		keywords: ['AI-assisted delivery', 'AI development', 'Model APIs', 'Retrieval', 'Evals', 'Streaming UI']
+		keywords: ['Python', 'Model APIs', 'Retrieval', 'Evals', 'Streaming UI', 'AI-assisted delivery']
 	}
 ]
 
@@ -157,7 +153,7 @@ export const timeline = [
 	},
 	{
 		date: 'Apr 2023',
-		label: 'V3 Cybersecurity · the rewrite I argued for',
+		label: 'V3 Cybersecurity · the rewrite I argued for · part time',
 		description:
 			"I rewrote the MVP when I arrived and got a 60% performance gain out of it. Then I spent months convincing leadership to let me rewrite the whole thing, Front-End and Back-End. They said yes. I defined the layout and the product philosophy, directed the designer through Figma, specified the data contracts, and I'm now building the entire Front-End on my own. Launch is meant to be the end of 2026.",
 		figures: [
@@ -232,14 +228,14 @@ export const testimonialData = [
 	{
 		name: 'Beatriz Martínez',
 		url: 'https://www.linkedin.com/in/martinez-beatriz/',
-		position: 'Senior Developer',
+		position: 'Senior Developer, Tecnosoftware',
 		message:
 			'Ariel is a professional who seeks to always be at the forefront with the latest technologies, he likes to contribute ideas and research and contribute new knowledge, he is a very good colleague and likes to maintain a good work environment.'
 	},
 	{
 		name: 'Dante Moore',
 		url: 'https://github.com/DanteCypress',
-		position: 'Tech Leader',
+		position: 'Tech Leader, V3 Cybersecurity',
 		message:
 			'Working alongside Ariel has been an absolute delight. His dedication to crafting high-quality front-end solutions is unparalleled. Not only does he possess a deep understanding of the technologies he works with, but he consistently goes above and beyond to ensure that every component he touches is executed excellently.'
 	},
@@ -302,7 +298,6 @@ export const certifications = [
 	{ year: '2026', name: 'AWS Certified Cloud Practitioner (exam prep)', issuer: 'LinkedIn' },
 	{ year: '2024', name: 'Python for Data Science, AI & Development', issuer: 'IBM' },
 	{ year: '2024', name: 'EF SET English Certificate (C2 Proficient)', issuer: 'EF SET' },
-	{ year: '2024', name: 'React — The Complete Guide', issuer: 'Udemy' }
 ]
 
 /* Four items, and every one of them a place rather than a scroll position.

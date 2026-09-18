@@ -2,7 +2,7 @@
 title: 'Two years, twelve thousand kilometers, and no Python'
 slug: 'two-years-no-python'
 description: 'What happened between saying I would learn Python and actually starting: a move from Argentina to Spain, and an industry that changed shape while I was filling in forms.'
-date: 2026-09-14T00:00:00Z
+date: 2026-09-17T00:00:00Z
 beat: 'trajectory'
 form: 'post'
 categories: ['career']
