@@ -18,7 +18,7 @@ export default {
 					hover: 'var(--accent-hover)',
 					muted: 'var(--accent-muted)',
 					/* The cool signal, already restated for whichever ground it
-					   lands on. `text-accent-alt` marks the `systems` beat and
+					   lands on. `text-accent-alt` marks the `backend` beat and
 					   stays legible on the ground and on the evidence plane, in
 					   both themes. */
 					alt: 'var(--accent-alt)'

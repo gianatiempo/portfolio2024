@@ -17,8 +17,8 @@ export async function GET(context) {
 			pubDate: item.data.date,
 			// Feed readers show these as the item's categories, so the beat and
 			// the form travel with the entry instead of only existing on the site.
-			// A subscriber can then filter the short notes out, which is the thing
-			// that makes publishing them often a courtesy rather than a nuisance.
+			// A subscriber can then tell a project write-up from a post without
+			// opening either.
 			categories: [beats[item.data.beat].label, forms[item.data.form].label],
 			link: `/writing/${item.slug}/`
 		}))

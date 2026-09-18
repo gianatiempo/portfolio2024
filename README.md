@@ -6,7 +6,7 @@ It takes a deliberate position on that: **the site never argues that the range b
 
 Live example: **[arielgianatiempo.com](https://arielgianatiempo.com)**
 
-Almost no client JavaScript. One inline script sets the theme before first paint; one small bundle covers view transitions and the mobile menu. Theming, motion, sidenotes and the reading-progress rail are pure CSS.
+Almost no client JavaScript. One inline script sets the theme before first paint, a small bundle covers view transitions and the mobile menu, and one canvas draws the drifting field behind the page. Theming, motion, sidenotes, the reading-progress rail and the spine are pure CSS.
 
 ---
 
@@ -17,7 +17,7 @@ Almost no client JavaScript. One inline script sets the theme before first paint
 3. [The design system](#the-design-system-strata)
 4. [Pages and routes](#pages-and-routes)
 5. [The home page, section by section](#the-home-page-section-by-section)
-6. [Content: posts, notes and projects](#content-posts-notes-and-projects)
+6. [Content: posts and projects](#content-posts-and-projects)
 7. [Beats](#beats)
 8. [Components you will reuse](#components-you-will-reuse)
 9. [Link preview cards](#link-preview-cards)
@@ -64,7 +64,7 @@ Work through these in order. Everything listed here is copy or configuration; no
 
 ### 2. Navigation
 
-`src/lib/consts.ts` → `links`. Drives both the header and the footer. On-page anchors (`/#practice`) and routes (`/about`) can be mixed; keep anchors in the order the sections actually appear or you send people scrolling backwards. The footer splits the list into two columns automatically, so adding a seventh link doesn't break the grid.
+`src/lib/consts.ts` → `links`. Drives both the header and the footer. On-page anchors (`/#contact`) and routes (`/about`) can be mixed; keep anchors in the order the sections actually appear or you send people scrolling backwards. The footer splits the list into two columns automatically, so adding a seventh link doesn't break the grid.
 
 External footer links (LinkedIn, GitHub, RSS) live in `src/AppFooter.astro` → `externalLinks`.
 
@@ -72,18 +72,19 @@ External footer links (LinkedIn, GitHub, RSS) live in `src/AppFooter.astro` → 
 
 All in `src/lib/consts.ts`:
 
-| Export            | Feeds                                                        | Notes                                    |
-| ----------------- | ------------------------------------------------------------ | ---------------------------------------- |
-| `availability`    | Hero, every post footer, Contact                             | Status, what you're open to, where       |
-| `identity`        | The "Who wrote this" card on every article                   | Name, role, one plain-language paragraph |
-| `beats`           | Post/project taxonomy, `/beat/*` pages, the `/post` masthead | See [Beats](#beats)                      |
-| `practice`        | Home → Practice                                              | What you do. Three layers per entry      |
-| `timeline`        | Home → Milestones                                            | Career, newest first, with figures       |
-| `testimonialData` | Home (2) and `/about` (3)                                    | Quotes from colleagues                   |
-| `facts`           | `/about` evidence panel                                      | Location, citizenship, languages         |
-| `certifications`  | `/about`                                                     | Year / name / issuer                     |
+| Export            | Feeds                                                     | Notes                                                              |
+| ----------------- | --------------------------------------------------------- | ------------------------------------------------------------------ |
+| `availability`    | Hero, every post footer, Contact                          | Status, what you're open to, where                                 |
+| `identity`        | The "Who wrote this" card on every article                | Name, role, one plain-language paragraph                           |
+| `beats`           | Entry taxonomy, `/beat/*` pages, the `/writing` masthead  | See [Beats](#beats)                                                |
+| `forms`           | `post` / `project` labels on rows, in the rail and in RSS | See [Content](#content-posts-and-projects)                         |
+| `practice`        | `/about` → Practice                                       | What you do. Only `label`, `status`, `plain` and `keywords` render |
+| `timeline`        | `/about` → Milestones                                     | Career, newest first, with figures                                 |
+| `testimonialData` | `/about`                                                  | Quotes from colleagues                                             |
+| `facts`           | `/about` evidence panel                                   | Location, citizenship, languages                                   |
+| `certifications`  | `/about`                                                  | Year / name / issuer                                               |
 
-Prose that isn't in `consts.ts` is written directly in its component — the hero paragraphs in `src/components/Hero.astro`, the biography in `src/pages/about.astro`. Both are marked with comments.
+Prose that isn't in `consts.ts` is written directly in its component — the hero paragraphs in `src/components/Masthead.astro`, the biography in `src/pages/about.astro`. Both are marked with comments.
 
 ### 4. Colour and type
 
@@ -108,7 +109,7 @@ Then update the fallback `ogImageAlt` string in `src/Layout.astro` to describe w
 ### 6. Housekeeping
 
 - Replace the Netlify badge at the top of this README, or delete it.
-- Delete `src/content/post/*` and `src/content/project/*` and write your own.
+- Delete `src/content/writing/*` and write your own.
 
 ---
 
@@ -126,7 +127,7 @@ The important consequence: **dark ink means "here are the receipts", not "this s
 
 Two rules worth keeping if you fork this:
 
-1. **Evidence is a panel, never a full-bleed page band.** The one exception is the hero seam. The moment a dark section runs edge to edge, the coldest, densest treatment starts winning on area and the page reads as "technical" rather than "readable with proof".
+1. **Evidence is a panel, never a full-bleed page band.** No exceptions. The moment a dark section runs edge to edge, the coldest, densest treatment starts winning on area and the page reads as "technical" rather than "readable with proof".
 2. **Never let background lightness be the only signal.** Mono, rules and density carry the distinction too, which is why the system still works in dark mode where the two lightnesses converge.
 
 ### The token architecture
@@ -135,7 +136,6 @@ Two rules worth keeping if you fork this:
 
 - `.ground` — the reverse: re-points back to the page palette. Needed when a page-coloured element is nested inside an `.ink` subtree.
 - `.evidence` — `.ink` plus the chrome (border, radius, lift, top sheen) and the mono voice.
-- `.voice-mono` — mono display metrics without the panel.
 
 ### Type scale
 
@@ -145,27 +145,27 @@ Headings read `--display-weight` / `--display-scale` / `--display-track` rather 
 
 ### Other useful classes
 
-`.shell` (the 84rem page frame — its width is a site constant and never varies by route) · `.measure` / `.measure-wide` (reading widths) · `.rows` + `.row-link` (the hairline list every list on the site uses) · `.meta` (mono uppercase labels) · `.beat` (a dot + label marker) · `.figure` / `.figure-value` / `.figure-label` · `.section-head` / `.section-head--split` · `.seam`.
+`.shell` (the 84rem page frame — its width is a site constant and never varies by route) · `.measure` / `.measure-wide` (reading widths) · `.rows` + `.row-link` (the hairline list every list on the site uses) · `.label` (small uppercase labels; `.time` for dates) · `.beat` (a dot + label marker) · `.figure` / `.figure-value` / `.figure-label` · `.section-head` / `.section-head--split` · `.spine` / `.tick` (the through-line and the marks that hang off it) · `.runaround` (prose flowing around a floated evidence panel).
 
 ---
 
 ## Pages and routes
 
-| Route                       | File                                    | What it is                                      |
-| --------------------------- | --------------------------------------- | ----------------------------------------------- |
-| `/`                         | `src/pages/index.astro`                 | Home. Composed from section components          |
-| `/about`                    | `src/pages/about.astro`                 | Long-form biography, facts, certifications      |
-| `/post`                     | `src/pages/post/index.astro`            | Writing archive + the beats masthead            |
-| `/post/[slug]`              | `src/pages/post/[...slug].astro`        | The article template                            |
-| `/project`                  | `src/pages/project/index.astro`         | Project list                                    |
-| `/project/[slug]`           | `src/pages/project/[...slug].astro`     | Project write-up (same long-form layout)        |
-| `/beat/[beat]`              | `src/pages/beat/[beat].astro`           | One page per beat, listing posts _and_ projects |
-| `/category/[c]`, `/tag/[t]` | `src/pages/category/`, `src/pages/tag/` | Generated from post frontmatter                 |
-| `/og/post/[slug].png`       | `src/pages/og/[...slug].png.ts`         | Generated link-preview cards                    |
-| `/rss.xml`                  | `src/pages/rss.xml.js`                  | Feed, carrying beat and kind as categories      |
-| `/404`                      | `src/pages/404.astro`                   |                                                 |
+| Route                       | File                                    | What it is                                           |
+| --------------------------- | --------------------------------------- | ---------------------------------------------------- |
+| `/`                         | `src/pages/index.astro`                 | Home. Composed from section components               |
+| `/about`                    | `src/pages/about.astro`                 | Long-form biography, facts, certifications           |
+| `/writing`                  | `src/pages/writing/index.astro`         | The archive, grouped by form, + the beats masthead   |
+| `/writing/[slug]`           | `src/pages/writing/[...slug].astro`     | The long-form template, for posts and projects alike |
+| `/beat/[beat]`              | `src/pages/beat/[beat].astro`           | One page per beat                                    |
+| `/category/[c]`, `/tag/[t]` | `src/pages/category/`, `src/pages/tag/` | Generated from entry frontmatter                     |
+| `/og/writing/[slug].png`    | `src/pages/og/[...slug].png.ts`         | Generated link-preview cards                         |
+| `/rss.xml`                  | `src/pages/rss.xml.js`                  | Feed, carrying beat and form as categories           |
+| `/404`                      | `src/pages/404.astro`                   |                                                      |
 
-`src/Layout.astro` wraps every page: `<head>`, metadata, the blocking theme script, header and footer.
+`/post`, `/post/[slug]`, `/project` and `/project/[slug]` are kept alive as redirects in `astro.config.mjs`. They were real routes before the two collections were merged, and a URL that has been shared once is a URL somebody else controls now — the slugs never changed, so every old link lands on the entry it always did.
+
+`src/Layout.astro` wraps every page: `<head>`, metadata, the blocking theme script, header, footer, the spine and the signal field.
 
 **Layout props:** `title`, `description`, `image`, `imageAlt`, `type`, `publishedDate`. If you pass `image`, pass `imageAlt` too.
 
@@ -175,43 +175,49 @@ Headings read `--display-weight` / `--display-scale` / `--display-track` rather 
 
 `src/pages/index.astro` is just an ordered list of components. Reorder, delete, or add freely — **the order is the argument**. The current order deliberately leads with the human material and puts the technical inventory after it.
 
-| #   | Component            | Data source             | What it does                                                                                              |
-| --- | -------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------- |
-| 1   | `Hero.astro`         | inline + `availability` | Masthead in the seam, availability line, two paragraphs, an "At a glance" evidence panel                  |
-| 2   | `Milestones.astro`   | `timeline`              | Career, newest first. Prose on the page, figures raised beside it                                         |
-| 3   | `Practice.astro`     | `practice`              | What you do. Each entry runs claim → account → evidence                                                   |
-| 4   | `Blog.astro`         | `post` collection       | Latest N posts (`SITE.NUM_POSTS_ON_HOMEPAGE`)                                                             |
-| 5   | `Testimonials.astro` | `testimonialData`       | Takes a `limit` prop                                                                                      |
-| 6   | `Contact.astro`      | `availability`          | Props for `id`, `eyebrow`, `heading`, `body` so it can be reused with different copy (it is, on `/about`) |
+| #   | Component           | Data source             | What it does                                                                                              |
+| --- | ------------------- | ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| 1   | `Masthead.astro`    | inline + `availability` | The claim, the availability line, two paragraphs, an "At a glance" evidence panel run around by the prose |
+| 2   | `WritingList.astro` | `writing` collection    | Latest N entries (`SITE.NUM_ENTRIES_ON_HOMEPAGE`), newest first                                           |
+| 3   | `Contact.astro`     | `availability`          | Props for `id`, `eyebrow`, `heading`, `body` so it can be reused with different copy (it is, on `/about`) |
 
-### The seam
+Three blocks, deliberately. `Milestones`, `Practice` and `Testimonials` all used to sit here and now live on `/about`, which is where somebody goes once this page has already convinced them. The comment at the top of `index.astro` has the word counts that made the case.
 
-`src/components/Seam.astro` renders its slot twice — once in normal flow on the page, once as an `aria-hidden` overlay in ink clipped to the far side of `--seam` — so a headline gets cut mid-word. It scrubs as you scroll and is disabled below 1024px.
+### The spine
 
-**Feed it display type only.** Body prose sliced mid-sentence is a legibility tax, not a device. The contract is in the component's comment: the slot must be a single element carrying its own padding, and must contain no `id` attributes (both copies are in the document).
+`src/components/Spine.astro` is the site's signature: one 2px hairline down the left gutter of every page, solid above where you are reading, a breathing marker at your position, and a dashed stroke below that crawls downward and never closes.
 
-To remove the seam entirely, replace `<Seam>…</Seam>` in `Hero.astro` with a plain `<section>`.
+Nothing listens for scroll. A scroll-driven animation publishes the reading position into a registered `--progress` property and the gradient, the dashes and the marker all read it. Without a scroll timeline, or under `prefers-reduced-motion`, it renders as one unbroken hairline — which is the correct rest state, not a fallback.
+
+It carries `transition:persist` so view transitions don't blink it out between pages, and it is positioned by nesting a real `.shell` inside an absolutely-positioned overlay, so it lands on the same x as the content at every width with nothing to keep in sync by hand. Put `.tick` on an element to draw a mark from it back to the line, and `.shell-river` on a section to hang its content off the spine.
+
+### The signal field
+
+`src/components/SignalField.astro` is the one piece of real JavaScript on the page: a few hundred points carried across a fixed canvas by a 2D simplex-noise flow field, each leaving a short fading trail. No dependency — the noise is ~40 lines, public domain, seeded per load. Particle count scales with viewport area and clamps between 140 and 420. Under `prefers-reduced-motion` it draws one still frame and stops.
+
+To remove it, delete the `<SignalField />` line in `Layout.astro`. Nothing else references it.
 
 ---
 
-## Content: posts, notes and projects
+## Content: posts and projects
 
-Two collections, schemas in `src/content/config.ts`. Both are Markdown or MDX; a folder per entry with an `index.md` inside is the convention, but any `.md`/`.mdx` file works.
+**One collection, two forms.** Posts and projects are both `writing` entries with a `form` field, not two collections — a write-up about a build _is_ a piece of writing, and filing it elsewhere splits the one thing on a portfolio that is supposed to accumulate. Schema in `src/content/config.ts`. Markdown or MDX; a folder per entry with an `index.md` inside is the convention, but any `.md`/`.mdx` file works.
 
 ```
 src/content/
-├── post/
-│   ├── 01_getting_started/index.md
-│   └── 02_building_with_ai/index.md
-└── project/
+└── writing/
+    ├── 01_getting_started/index.md
+    ├── 02_two_years_no_python/index.md
     └── portfolio/index.md
 ```
+
+There is no `note` form and no `tldr` field. Both existed and both were removed on purpose; the reasoning is in the `FORMS` comment in `src/content/config.ts`.
 
 Folder names are for ordering in your editor only — the URL comes from `slug` in frontmatter, or from the filename if you omit it.
 
 ### Posts
 
-A post is a piece of writing. Create `src/content/post/my-post/index.md`:
+A post is a piece of writing. Create `src/content/writing/my-post/index.md`:
 
 ```yaml
 ---
@@ -219,11 +225,8 @@ title: 'Using AI is not a skill. Building with it is.'
 slug: 'building-with-ai' # optional; the URL segment
 description: 'Why I am going back to fullstack through Python.'
 date: 2026-09-12T00:00:00Z
-beat: 'trajectory' # interface | systems | trajectory
-kind: 'post' # post | note
-tldr: # optional, renders the summary panel
-  - 'First point.'
-  - 'Second point.'
+beat: 'trajectory' # frontend | backend | trajectory
+form: 'post' # post | project
 repoURL: 'https://github.com/you/thing' # optional, renders a repo panel
 categories: ['career']
 tags: ['python', 'ai']
@@ -238,8 +241,7 @@ draft: false
 | `description`        | —        | **Layer one.** Rendered large in the serif under the title, and used for `<meta description>` and link previews. Write it as the plain-language answer to "what is this about" |
 | `slug`               | —        | URL segment                                                                                                                                                                    |
 | `beat`               | —        | Defaults to `trajectory`. See [Beats](#beats)                                                                                                                                  |
-| `kind`               | —        | Defaults to `post`. `note` marks it short                                                                                                                                      |
-| `tldr`               | —        | Array of strings → the "The short version" panel                                                                                                                               |
+| `form`               | —        | Defaults to `post`. `project` adds a status and a stack to the rail                                                                                                            |
 | `repoURL`            | —        | Renders a `RepoCard` below the article                                                                                                                                         |
 | `categories`, `tags` | —        | Generate `/category/*` and `/tag/*` pages; also drive "Keep reading"                                                                                                           |
 | `draft`              | —        | `true` excludes it from every list, route and feed                                                                                                                             |
@@ -247,22 +249,17 @@ draft: false
 
 **In the body you get:** headings (`h2`s become the sticky table of contents), code blocks with theme-aware syntax highlighting, tables, blockquotes, `<details>` for optional detours, and **sidenotes** — write an ordinary GFM footnote (`text[^1]` … `[^1]: the note`) and `src/plugins/rehype-sidenotes.mjs` turns it into a numbered chip that expands in place. Pure CSS, no layout reserved for notes that don't exist.
 
-### Notes
-
-Same collection, `kind: 'note'`. A note is a short piece — a thing learned, a link with an opinion, a snag and its fix. It exists so that publishing weekly while you're learning is cheap, because a format that only accommodates 2,000-word essays quietly stops you posting.
-
-Differences: marked "Note" in the archive, set a step smaller, shows "Short note" in the rail, tagged `Note` in RSS so subscribers can filter, and **never takes the featured slot** even when it's newest.
-
 ### Projects
 
-A project is a thing you built. Create `src/content/project/my-thing/index.md`:
+A project is a thing you built. Same collection, same folder, `form: 'project'`. Create `src/content/writing/my-thing/index.md`:
 
 ```yaml
 ---
 title: 'This site'
 description: 'An Astro portfolio built around three depths of explanation.'
-date: 2026-09-12
-beat: 'interface'
+date: 2026-09-17
+beat: 'frontend'
+form: 'project' # this is the only thing that makes it a project
 status: 'In progress' # free text — "Shipping", "Archived", anything
 stack: ['Astro', 'TypeScript', 'Tailwind']
 repoURL: 'https://github.com/you/thing'
@@ -288,11 +285,11 @@ Defined in two places that must agree:
 
 ```ts
 export const beats = {
-	interface: {
-		label: 'Interface',
+	frontend: {
+		label: 'Front-End',
 		tone: 'warm', // warm | cool | ink
 		plain: 'The part of the software people actually see and touch.',
-		summary: "The user's side of the wire. React, design systems…"
+		summary: "The user's side of the thing. React, UI, design…"
 	}
 	// …
 }
@@ -302,7 +299,7 @@ export const beats = {
 - `summary` is layer two — the same thing with the vocabulary.
 - `tone` maps to a colour through `beatTone` in the same file: `warm` → `text-accent`, `cool` → `text-accent-alt`, `ink` → `text-primary`. Both accent tokens are already restated per background, so a beat marker stays legible on the page and on the evidence plane, in both themes.
 
-**To rename or add a beat:** add the key to `BEATS`, add the matching entry to `beats`, and update the `beat:` field in any existing content. Everything else — `/beat/*` pages, the masthead, the archive markers, RSS categories, the link-preview cards — reads from those two places.
+**To rename or add a beat:** add the key to `BEATS`, add the matching entry to `beats`, and update the `beat:` field in any existing content. Everything else — `/beat/*` pages, the masthead, the archive markers, RSS categories, the link-preview cards — reads from those two places. The keys are URL segments (`/beat/frontend`), so they stay lowercase and unhyphenated even when the `label` isn't.
 
 Beats render as a dot and a word, never as a page-scale treatment. That's the version that still works when the archive has forty entries in it.
 
@@ -310,16 +307,18 @@ Beats render as a dot and a word, never as a page-scale treatment. That's the ve
 
 ## Components you will reuse
 
-| Component            | Use it for                                                                                                                                             |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Evidence.astro`     | Any raised dark panel. Optional `label` header, `bodyClass` to control padding. Forwards rest props, so `data-rise` and `style="--enter:n"` work on it |
-| `Figures.astro`      | A row of big numbers. Takes `items: { value, label }[]`. Source order is `dt`-then-`dd` and CSS flips them, so it announces correctly                  |
-| `SectionHead.astro`  | Section lockup: `eyebrow` prop, heading in the default slot, standfirst in the `note` slot, `split` for the two-column variant                         |
-| `RepoCard.astro`     | Published code as evidence. `url`, optional `stack`                                                                                                    |
-| `IdentityCard.astro` | The "Who wrote this" block. Reads `identity` from consts                                                                                               |
-| `Availability.astro` | The status line. Reads `availability` from consts                                                                                                      |
-| `MailLink.astro`     | An email link that never puts the address in the HTML — two base64 chunks assembled in the browser                                                     |
-| `blog/Posts.astro`   | The archive list. `list` and `feature` (enlarges the first entry)                                                                                      |
+| Component            | Use it for                                                                                                                                                         |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Evidence.astro`     | Any raised dark panel. Optional `label` header, `bodyClass` to control padding. Forwards rest props, so `data-rise` and `style="--enter:n"` work on it             |
+| `Figures.astro`      | A row of big numbers. Takes `items: { value, label }[]`. Source order is `dt`-then-`dd` and CSS flips them, so it announces correctly                              |
+| `SectionHead.astro`  | Section lockup: `eyebrow` prop, heading in the default slot, standfirst in the `note` slot, `split` for the two-column variant                                     |
+| `RepoCard.astro`     | Published code as evidence. `url`, optional `stack`                                                                                                                |
+| `IdentityCard.astro` | The "Who wrote this" block. Reads `identity` from consts                                                                                                           |
+| `Availability.astro` | The status line, and a link to the contact block. `href` defaults to `#contact`; pass `"/#contact"` from a page with no Contact section, or `false` for plain text |
+| `MailLink.astro`     | An email link that never puts the address in the HTML — two base64 chunks assembled in the browser                                                                 |
+| `WritingList.astro`  | The archive list. `list`, `feature` (enlarges the newest entry), `showForm` (off where a heading already names the form)                                           |
+| `Spine.astro`        | The through-line. One per page, mounted by `Layout` — you should not need to place it yourself                                                                     |
+| `SignalField.astro`  | The drifting canvas field. Mounted by `Layout`; delete that line to remove it                                                                                      |
 
 ### A worked example
 
@@ -349,9 +348,9 @@ import Figures from '@components/Figures.astro'
 
 ## Link preview cards
 
-`src/pages/og/[...slug].png.ts` generates one 1200×630 PNG per post and project at build time, using [satori](https://github.com/vercel/satori) + [resvg](https://github.com/yisibl/resvg-js). The card is Strata in one frame: the title as the claim in the serif on the cream ground, and a raised ink strip underneath with the beat, date and reading time.
+`src/pages/og/[...slug].png.ts` generates one 1200×630 PNG per entry at build time, using [satori](https://github.com/vercel/satori) + [resvg](https://github.com/yisibl/resvg-js). The card is Strata in one frame: the title as the claim in the serif on the cream ground, a raised ink strip underneath with the beat and the date, and the spine down the left gutter. `scripts/og-card.html` builds the default `public/og.png` to the same composition, so a link to the home page and a link to an entry read as two cards from one publication.
 
-Routes mirror the pages — `/post/x` → `/og/post/x.png` — and the templates ask for their own URL by the same rule. `og:image:alt` is generated from the same inputs as the picture, so the two can't drift.
+Routes mirror the pages — `/writing/x` → `/og/writing/x.png` — and the templates ask for their own URL by the same rule. `og:image:alt` is generated from the same inputs as the picture, so the two can't drift.
 
 **To restyle:** `src/lib/og.ts`. The `COLOR` map mirrors `tokens.css` resolved to sRGB (satori has no `oklch()`) — if you change a palette token, change its twin here. `titleSize()` sets the three type steps.
 
@@ -361,7 +360,7 @@ Routes mirror the pages — `/post/x` → `/og/post/x.png` — and the templates
 
 ## Motion and accessibility
 
-All motion is native CSS — **no animation library**. Scroll-linked effects use `animation-timeline: scroll()` / `view()` inside `@supports`, so browsers without scroll-driven animation get the static layout and no JavaScript fallback runs.
+Every scroll-linked and perpetual effect is native CSS — **no animation library, no smooth-scroll shim**. Scroll-linked effects use `animation-timeline: scroll()` / `view()` inside `@supports`, so browsers without scroll-driven animation get the static layout and no JavaScript fallback runs. The one exception is the signal field, which is a real per-frame canvas simulation; everything else on the page, the spine included, is a keyframe.
 
 Attributes you can put on anything:
 
@@ -373,6 +372,8 @@ Attributes you can put on anything:
 | `data-enter`   | On-load entrance for above-the-fold content. Stagger with `style="--enter:0"`, `1`, … |
 
 The whole motion layer sits behind `prefers-reduced-motion: no-preference`, with a tiered `reduce` block that strips movement while keeping colour and focus transitions. Content is visible by default — a failure mode can never hide it.
+
+Perpetual effects read a single `--flow` clock through `sin()` at their own amplitude and phase, so everything moving is in step rather than drifting. With no clock running, `sin(0)` is 0 and each effect lands on the midpoint it oscillates around, which is the value it would have held anyway — so reduced motion, an unsupported browser and the first paint before the clock starts all render the same correct page.
 
 Also in the box: text hierarchy tuned to clear WCAG AA at 13px (the comment in `tokens.css` explains why the greys are compressed), visible focus rings, `prefers-reduced-motion` honoured, and semantic markup throughout.
 
@@ -413,15 +414,14 @@ src/
 ├── AppFooter.astro  footer nav + external links
 ├── Layout.astro     <head>, metadata, theme script, page shell
 ├── components/
-│   ├── Availability · Blog · Contact · Evidence · Figures · Hero
-│   ├── IdentityCard · MailLink · Milestones · Practice · RepoCard
-│   ├── Seam · SectionHead · Testimonials
+│   ├── Availability · Contact · Evidence · Figures · IdentityCard
+│   ├── MailLink · Masthead · Milestones · RepoCard · SectionHead
+│   ├── SignalField · Spine · Testimonials · WritingList
 │   ├── base/        ThemeIcon
-│   └── blog/        Posts, PostNavigation, FormattedDate, BackToPrevious
+│   └── blog/        PostNavigation, FormattedDate, BackToPrevious
 ├── content/
-│   ├── config.ts    collection schemas + BEATS
-│   ├── post/
-│   └── project/
+│   ├── config.ts    collection schema + BEATS + FORMS
+│   └── writing/     posts and projects, one collection
 ├── lib/
 │   ├── consts.ts    site copy, nav, beats, all page data
 │   ├── og.ts        link-preview card renderer

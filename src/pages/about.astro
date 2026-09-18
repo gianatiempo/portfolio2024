@@ -70,7 +70,7 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 
 				<div class="space-y-5 text-body-lg text-secondary">
 					<p data-enter style="--enter:3">
-						I started in 2007 writing Java back ends. School systems, government work, and eventually airline loyalty at Hewlett-Packard. Eight years of that, and then AngularJS made the browser look
+						I started in 2007 writing Java Back-Ends. School systems, government work, and eventually airline loyalty at Hewlett-Packard. Eight years of that, and then AngularJS made the browser look
 						like the interesting place to be, so I went. I stayed eleven years.
 					</p>
 					<p data-enter style="--enter:4">
@@ -103,7 +103,7 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 			<header class="section-head" data-rise>
 				<p class="label tick text-accent">Practice</p>
 				<h2 class="measure">What I do, and how new I am at it.</h2>
-				<p class="measure mt-2 text-secondary">Three strands. One I have done for eleven years, one I am returning to, and one I started last year.</p>
+				<p class="measure mt-2 text-secondary">Four strands. One I did for eight years, one I have done for eleven, one I am aiming at, and one I am building right now to get there.</p>
 			</header>
 
 			<div class="rows">
@@ -162,7 +162,12 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 			</div>
 		</section>
 
-		<section class="shell shell-river py-section">
+		<!-- `#enso` is linked from the footer ("円相 · the story behind the mark"),
+		     so the id lands on the section rather than on the ensō panel itself:
+		     arriving at the second of two side-by-side cards with its own heading
+		     scrolled off the top reads as a broken link. `scroll-mt-24` clears the
+		     fixed header, same as every other anchored section on the site. -->
+		<section class="shell shell-river scroll-mt-24 py-section" id="enso">
 			<header class="section-head" data-rise>
 				<p class="label tick text-accent">Off the screen</p>
 				<h2 class="measure">Two ideas from aikido that I still use.</h2>
@@ -232,7 +237,7 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 			id="contact"
 			eyebrow="What I'm after"
 			heading="Fullstack work with AI in it."
-			body="Remote, in Europe, and fintech if I get to pick, because I already know where the bodies are buried in that one. Ideally somewhere the front end and the model layer are one conversation instead of two teams. That's the spot where nineteen years of untangling dense things actually pays off. And I'm happy to talk to anyone else making the same move."
+			body="Remote, in Europe, and fintech if I get to pick, because I already know where the bodies are buried in that one. Ideally somewhere the Front-End and the model layer are one conversation instead of two teams. That's the spot where nineteen years of untangling dense things actually pays off. And I'm happy to talk to anyone else making the same move."
 		/>
 	</main>
 </Layout>

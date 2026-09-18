@@ -1,17 +1,28 @@
 <!doctype html>
 <!--
-	Source for public/og.png. The card is the site's own seam, built from the same
-	tokens and the same fonts, so it stays honest when the palette moves.
+	Source for public/og.png, the card every standing page unfurls with.
 
-	To regenerate after a copy change: open this file in a browser at exactly
-	1200x630 and capture it, or screenshot it headless, e.g.
+	It is Strata in one frame, and deliberately the same composition the
+	per-entry cards use (src/lib/og.ts): the claim set large on the ground, the
+	receipts raised on an ink panel underneath it, the spine down the left
+	gutter. A link to the home page and a link to a post should look like two
+	cards from one publication, so the only things that differ are the ensō and
+	what the strip is counting.
+
+	It used to be the seam: the same headline rendered twice, the second copy
+	clipped to the far side of 54% so the split cut through a word. The seam is
+	gone from the site, so it is gone from here.
+
+	Every value below is copied from src/styles/tokens.css in oklch, day theme,
+	because a card has no theme to follow and cream stands out in a feed that is
+	mostly white. Changing a token there means changing it here.
+
+	To regenerate after a copy change:
 
 	  npx playwright screenshot --viewport-size=1200,630 \
 	    scripts/og-card.html public/og.png
 
 	Then update `ogImageAlt` in src/Layout.astro to match what the card now says.
-	The headline's max-width is load-bearing: it has to run past the seam at 648px
-	so the split cuts through a word, which is the entire point of the card.
 -->
 <html>
 	<head>
@@ -49,71 +60,89 @@
 				overflow: hidden;
 			}
 
+			/* The ground, day. */
 			.card {
 				position: relative;
 				width: 1200px;
 				height: 630px;
 				isolation: isolate;
-				--seam: 54%;
-			}
-
-			/* Same two registers as the site, same token names. */
-			.pane {
-				position: absolute;
-				inset: 0;
-				padding: 64px 72px 60px;
 				display: flex;
 				flex-direction: column;
-				background: var(--bg);
-				color: var(--fg);
-			}
+				padding: 58px 72px 56px;
+				background: oklch(0.981 0.004 85);
+				color: oklch(0.158 0.012 55);
 
-			.paper {
-				--bg: oklch(0.981 0.004 85);
-				--fg: oklch(0.158 0.012 55);
 				--muted: oklch(0.512 0.016 55);
 				--accent: oklch(0.567 0.185 34);
-				--rule: oklch(0.158 0 0 / 0.12);
+				--rule-strong: oklch(0.158 0 0 / 0.22);
+
+				--ev-bg: oklch(0.222 0.028 252);
+				--ev-text: oklch(0.958 0.006 240);
+				--ev-muted: oklch(0.678 0.018 242);
+				--ev-accent: oklch(0.792 0.128 197);
+				--ev-rule: oklch(1 0 0 / 0.13);
 			}
 
-			.instrument {
-				--bg: oklch(0.222 0.028 252);
-				--fg: oklch(0.958 0.006 240);
-				--muted: oklch(0.678 0.018 242);
-				--accent: oklch(0.792 0.128 197);
-				--rule: oklch(1 0 0 / 0.15);
-				clip-path: inset(0 0 0 var(--seam));
-			}
-
-			/* The seam's own edge, matching the light-theme value in tokens.css. */
-			.instrument::before {
-				content: '';
+			/* The spine. On the site it carries reading position down the page;
+			   on a still card there is nothing to be partway through, so it is
+			   drawn at its rest state — one unbroken hairline, exactly what the
+			   page renders under prefers-reduced-motion. */
+			.spine {
 				position: absolute;
-				inset-block: 0;
-				left: var(--seam);
-				width: 1px;
-				background: oklch(1 0 0 / 0.13);
+				top: 0;
+				bottom: 0;
+				left: 40px;
+				width: 2px;
+				background: var(--rule-strong);
 			}
 
+			/* The tick, drawn from the eyebrow back to the spine so the line reads
+			   as something the content hangs off rather than a border. */
 			.eyebrow {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
 				font-family: 'JetBrains Mono', monospace;
-				font-size: 15px;
-				font-weight: 500;
-				letter-spacing: 0.11em;
+				font-size: 20px;
+				font-weight: 600;
+				letter-spacing: 0.15em;
 				text-transform: uppercase;
-				color: var(--muted);
 				white-space: nowrap;
 			}
 
-			/* The width is the whole point: the headline has to run past the seam at
-			   648px so the split cuts through it, the way it does on the page. */
+			.eyebrow::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				right: calc(100% + 14px);
+				width: 18px;
+				height: 2px;
+				background: var(--rule-strong);
+			}
+
+			.domain {
+				font-weight: 600;
+				color: var(--accent);
+			}
+
+			/* The claim. flexGrow takes the slack and the text is anchored to the
+			   bottom of it, so the headline always sits just above the strip and
+			   grows upward into the air instead of floating mid-card. */
+			.claim {
+				display: flex;
+				align-items: flex-end;
+				flex-grow: 1;
+				gap: 48px;
+				padding: 30px 0 44px;
+			}
+
 			h1 {
-				margin-top: 40px;
-				max-width: 824px;
+				max-width: 730px;
 				font-family: 'Instrument Serif', serif;
 				font-weight: 400;
-				font-size: 104px;
-				line-height: 0.93;
+				font-size: 88px;
+				line-height: 0.95;
 				letter-spacing: -0.028em;
 			}
 
@@ -122,47 +151,69 @@
 				color: var(--accent);
 			}
 
+			/* The one mark on the site. Kept at the claim's baseline rather than
+			   pinned to a corner, so it reads as part of the lockup. */
 			.enso {
+				width: 178px;
+				height: 178px;
+				margin-left: auto;
+				margin-bottom: 6px;
+				flex: none;
+			}
+
+			/* Layer three, raised. Same fill, edge, radius and lift as `.evidence`
+			   in tokens.css, at the day values. */
+			.evidence {
+				position: relative;
+				display: flex;
+				align-items: stretch;
+				background: var(--ev-bg);
+				border: 1px solid oklch(1 0 0 / 0.1);
+				border-radius: 18px;
+				box-shadow:
+					0 1px 1px oklch(0.158 0 0 / 0.04),
+					0 18px 36px -20px hsl(30 8% 45% / 0.5),
+					0 4px 10px -6px hsl(30 8% 45% / 0.25);
+			}
+
+			/* The hairline of light along the top edge, which is what stops the
+			   panel reading as a hole punched in the page. */
+			.evidence::before {
+				content: '';
 				position: absolute;
-				top: 124px;
-				right: 72px;
-				width: 164px;
-				height: 164px;
+				inset-inline: 18px;
+				top: -1px;
+				height: 1px;
+				background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.07), transparent);
 			}
 
-			.foot {
-				margin-top: auto;
-				padding-top: 26px;
-				border-top: 1px solid var(--rule);
+			.stat {
+				flex: 1;
 				display: flex;
-				align-items: baseline;
-				justify-content: space-between;
-				gap: 32px;
-			}
-
-			/* The gap is tuned so the last stat closes before the seam at 648px: a
-			   14px label that changes colour mid-word reads as a rendering fault
-			   rather than as the split doing its job. */
-			.stats {
-				display: flex;
-				gap: 26px;
+				flex-direction: column;
+				gap: 9px;
+				padding: 26px 30px;
 				font-family: 'JetBrains Mono', monospace;
-				font-size: 14px;
-				font-weight: 500;
-				letter-spacing: 0.09em;
-				text-transform: uppercase;
-				color: var(--muted);
 				white-space: nowrap;
 			}
 
-			.domain {
-				font-family: 'JetBrains Mono', monospace;
-				font-size: 14px;
+			.stat + .stat {
+				border-left: 1px solid var(--ev-rule);
+			}
+
+			.stat dt {
+				font-size: 17px;
 				font-weight: 600;
-				letter-spacing: 0.09em;
+				letter-spacing: 0.13em;
 				text-transform: uppercase;
-				color: var(--accent);
-				white-space: nowrap;
+				color: var(--ev-accent);
+			}
+
+			.stat dd {
+				font-size: 20px;
+				font-weight: 500;
+				letter-spacing: -0.01em;
+				color: var(--ev-text);
 			}
 
 			/* Same film grain as the site, so the card shares its surface. */
@@ -178,33 +229,36 @@
 	</head>
 	<body>
 		<div class="card">
-			<div class="pane paper">
-				<p class="eyebrow">Ariel Gianatiempo · Málaga, Spain</p>
+			<span class="spine"></span>
+
+			<p class="eyebrow">
+				<span>Ariel Gianatiempo · Málaga, Spain</span>
+				<span class="domain">arielgianatiempo.com</span>
+			</p>
+
+			<div class="claim">
 				<h1>Nineteen years making complicated software easier to <em>use</em>.</h1>
-				<img class="enso" src="../src/assets/enso.png" />
-				<div class="foot">
-					<div class="stats">
-						<span>React, eight years</span>
-						<span>Java, eight before</span>
-						<span>Python, returning</span>
-					</div>
-					<span class="domain">arielgianatiempo.com</span>
-				</div>
+				<img class="enso" src="../src/assets/enso.png" alt="" />
 			</div>
 
-			<div class="pane instrument">
-				<p class="eyebrow">Ariel Gianatiempo · Málaga, Spain</p>
-				<h1>Nineteen years making complicated software easier to <em>use</em>.</h1>
-				<img class="enso" src="../src/assets/enso.png" />
-				<div class="foot">
-					<div class="stats">
-						<span>React, eight years</span>
-						<span>Java, eight before</span>
-						<span>Python, returning</span>
-					</div>
-					<span class="domain">arielgianatiempo.com</span>
+			<dl class="evidence">
+				<div class="stat">
+					<dt>Front-End</dt>
+					<dd>Last eleven years</dd>
 				</div>
-			</div>
+				<div class="stat">
+					<dt>Back-End</dt>
+					<dd>First eight years</dd>
+				</div>
+				<div class="stat">
+					<dt>Python</dt>
+					<dd>One day, now day one</dd>
+				</div>
+				<div class="stat">
+					<dt>AI</dt>
+					<dd>Getting started</dd>
+				</div>
+			</dl>
 
 			<div class="grain"></div>
 		</div>

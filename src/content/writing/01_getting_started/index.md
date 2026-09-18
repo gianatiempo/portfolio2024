@@ -3,7 +3,7 @@ title: 'Getting started?'
 slug: 'getting-started'
 description: 'How I built this.'
 date: 2024-07-01T00:00:00Z
-beat: 'interface'
+beat: 'frontend'
 form: 'post'
 categories: ['website']
 tags: ['learning', 'playing']

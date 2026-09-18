@@ -1,8 +1,9 @@
 ---
 title: 'This site'
-description: 'An Astro portfolio built around one idea: two visual registers, paper and instrument, sharing a single grid so that front-end work and AI work read as two halves of one job instead of two sites on one domain.'
-date: 2026-09-12
-beat: 'interface'
+slug: 'this-site'
+description: 'In 2024 I took a Tailwind template apart to learn Astro. Two years later I threw it out and built this one from scratch, around three levels of depth and one list that holds everything I write.'
+date: 2026-09-17T00:00:00Z
+beat: 'frontend'
 form: 'project'
 status: 'Shipping'
 stack:
@@ -10,60 +11,50 @@ stack:
   - TypeScript
   - Tailwind
   - CSS scroll-driven animation
+  - Canvas 2D
+categories: ['website']
+tags: ['astro', 'css', 'design', 'writing']
 repoURL: https://github.com/gianatiempo/portfolio2024
 ---
 
-The problem with this site was never really visual. I needed one place that covers eleven years of front-end architecture _and_ a return to the server through Python. The obvious way to lay that out is a front-end section and an AI section, and that says exactly the wrong thing. Two sections read as somebody drifting. One publication with range reads like somebody who knows what they're doing.
+Two years ago I built this site to learn Tailwind and Astro. That was the whole brief. I found a Tailus template, took it apart, put it back together in a way I liked, borrowed the blog and projects setup from Astro Micro, uninstalled React halfway through because I'd stopped needing it, and shipped. It worked fine. I was pretty happy with it.
 
-So I made the structure do the arguing.
+Then I moved forgot about it and moved to Spain. Two years later, I'm back for more.
 
-## Two registers, one grid
+## So what was wrong with it?
 
-Every surface on the site belongs to one of two registers. **Paper** is warm, set in a serif, and holds the career, the writing and the human stuff. **Instrument** is cool, set in mono, and holds the data: Python, models, the career as a table of record.
+Nothing was broken. It still built and it still loaded fast. The problem is that it was made to prove I could use Tailwind, and by 2026 that's not something anybody needs proof of.
 
-The thing that stops them reading as two separate sites is the constraint. They share one grid, one type scale and one spacing rhythm, and the only things allowed to change are the surface colour and the display font. Loosen that and the whole thing falls apart into the exact problem I was trying to solve.
+What I need it to say now is a much bigger ask. Nineteen years of work, eight of them on Java Back-Ends, eleven on the Front-End, and now going back to the server with Python and building things that have AI inside them. A recruiter and an engineer both have to land on that and get what they came for, and those two people read completely differently. One wants the shape of a career in about ten seconds. The other one goes looking for what I actually touched, and notices when it isn't there.
 
-Mechanically, both palettes are declared as named sets and the live tokens are aliases onto one of them:
+So I rebuilt it. No template this time, just me and AI for about a week.
 
-```css
-.register-instrument {
-	--bg-canvas: var(--ins-bg-canvas);
-	--text-primary: var(--ins-text-primary);
-	--accent: var(--ins-accent);
-	/* and sixteen more */
-}
-```
+## The new look
 
-Custom properties inherit, so re-pointing the aliases on a section means every utility I'd already written against them keeps working inside it. No variant classes, no second stylesheet. A `.register-paper` nested inside an instrument section resolves the paper set back out of `:root`, which means it returns to whichever paper the reader's theme is on.
+The design is organized around how deep you want to go, and there are three levels. Everything on the site is one of them.
 
-## The seam
+Level one is the claim. One plain sentence, readable by anyone. "Nineteen years making complicated software easier to use." If you read nothing else on the site, you've got the pitch.
 
-The hero and the closing block render their content twice. Once in normal flow as the paper copy, which owns the height, and once as an `aria-hidden` overlay in the instrument register, clipped to the far side of a registered `--seam` property. Identical markup, identical type metrics, so the two line up exactly and the headline gets cut in half mid-word.
+Then the account, where I get to explain myself instead of just asserting things at people.
 
-The overlay takes no pointer events, which is the part that keeps it honest. Every link you can see on the instrument side is really the paper copy's link sitting underneath, so the whole trick costs nothing in keyboard order, screen reader output or hit targets. Without `clip-path` support you just get the paper copy on its own.
+And in the end, the evidence. Numbers, dates, stacks, links to repos, the career as a table. Dark panels so you can skim the whole site reading only those.
 
-The seam then travels while you read. It's scrubbed against scroll position instead of playing once on entry:
+There's also a hairline running down the left of every page... solid above where you're reading, a small dot that breathes where you are, and a dashed line below that keeps crawling downward.
 
-```css
-@keyframes seam-shift {
-	to {
-		--seam: 34%;
-	}
-}
+Finally, a very slow field of particles drifting behind all of it, which does nothing whatsoever except giving some action to the whole thing. Both are there because a quiet, tasteful site reads as old, and I've shipped old once already.
 
-.seam {
-	animation: seam-shift linear both;
-	animation-timeline: view();
-	animation-range: entry 60% exit 40%;
-}
-```
+## And the content
 
-It's the only bit of motion on the site that's actually saying something. The balance shifts from paper toward instrument in the same direction the page does, from nineteen years of career toward whatever I'm building now.
+The 2024 site had a blog and a projects section, which is what everybody does and which I now think is wrong, at least for me.
 
-## What it costs
+So there's one list now, everything at `/writing`, newest first. A post is the long version of something, worked out properly. A project is a thing that exists, with a status and a stack on it. Same list, different treatment on the row, and the old `/post` and `/project` links still land where they always did.
 
-No animation library, no client framework, no smooth-scroll shim. The motion is native CSS scroll-driven animation behind `@supports` and `prefers-reduced-motion`, so content is visible by default and a browser that can't do any of it loses the movement and nothing else. The only JavaScript that ships is the mobile menu dismissal and the theme read that has to happen before paint.
+Every entry also gets a beat, which is a magazine word and I'm using it on purpose. Front-End, Back-End, Trajectory. The browser side, the server and AI side, and the career stuff. Three facets of one publication, filed the way a magazine files its sections, because the Back-End years and the Front-End move really were very different things, and I'm trying to put them back together as one.
 
----
+The career itself moved to `/about`, which is where somebody goes once the home page has already convinced them.
 
-_This is the first thing in the collection and the one I keep using as a template. The others are still in progress._
+## What is next?
+
+More writing, mostly. The point of the rebuild was to have somewhere to put things as I learn them, and Python is about to generate a lot of things to put (hope so!).
+
+Thanks for reading, and see you soon.

@@ -44,18 +44,21 @@ const count = (n: number, label: string) => `${n} ${n === 1 ? label.toLowerCase(
 const firstYear = entries.length ? entries[entries.length - 1].data.date.getFullYear() : new Date().getFullYear()
 ---
 
-<Layout title="Writing" description="Posts, short notes and projects. Working notes on front-end architecture, Python on the server, and shipping features that have a model inside them.">
+<Layout
+	title="Writing"
+	description="I did eight years as web developer, mostly Java 6 and backend work, then... jQuery and AngularJS opened the door for eleven in the browser. Now, catching up with Python and AI, notes rather than tutorials — usually written while I'm still figuring the thing out. Three topics; here's what each one covers."
+>
 	<main class="overflow-clip">
 		<section class="shell shell-river pb-16 pt-32 sm:pt-40">
 			<p class="label tick mb-7 text-accent" data-enter style="--enter:0">Writing</p>
 
 			<h1 class="max-w-title text-display leading-[0.93] tracking-[-0.03em]" data-enter style="--enter:1">
-				Both ends of the&nbsp;<em class="italic text-accent">stack</em>.
+				Both ends of the <em class="italic text-accent">stack</em>... Full<em class="italic text-accent">stack</em>?
 			</h1>
 
 			<p class="measure mt-10 text-body-lg text-secondary" data-enter style="--enter:2">
-				Eight years on the server, eleven in the browser, and now the part where a model goes inside the product. Working notes rather than tutorials — usually written while I'm still figuring the
-				thing out. Three beats; here's what each one covers.
+				I did eight years as web developer, mostly Java 6 and backend work, then... jQuery and AngularJS opened the door for eleven in the browser. Now, catching up with Python and AI, notes rather
+				than tutorials — usually written while I'm still figuring the thing out. Three topics; here's what each one covers.
 			</p>
 		</section>
 

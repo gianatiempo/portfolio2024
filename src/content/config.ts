@@ -19,23 +19,30 @@ import { defineCollection, z } from 'astro:content'
    part of the stack. Separate `frontend` and `ai` collections would file them
    as if they were different jobs, which they are not — the front end and the
    server have been two ends of one job since the job existed. */
-export const BEATS = ['interface', 'systems', 'trajectory'] as const
+export const BEATS = ['frontend', 'backend', 'trajectory'] as const
 
-/* Three forms, one schema.
+/* Two forms, one schema.
  *
- *   post     the long version, worked out properly, usually with a tl;dr
- *   note     short — a thing learned, a link with an opinion, a snag and its fix
+ *   post     a piece of writing
  *   project  a thing that exists, with a status and a stack
  *
- * `note` exists because publishing weekly while learning is the whole point,
- * and a format that only accommodates two-thousand-word posts quietly stops
- * you posting. `project` is a post with a state: it was its own collection
- * until the merge, and the only thing it ever needed that a post did not was
- * a status and a stack in the rail.
+ * `project` is a post with a state: it was its own collection until the merge,
+ * and the only thing it ever needed that a post did not was a status and a
+ * stack in the rail.
  *
- * None of the three gets its own collection, its own route or its own
- * template — only its own row treatment and its own rail. */
-export const FORMS = ['post', 'note', 'project'] as const
+ * There was a third, `note`, for short pieces, and it is gone. Two formats
+ * where one will do is a decision to make before every post about whether the
+ * thing you are writing counts as substantial, and that decision is a reason
+ * not to publish. A post that is short is a short post.
+ *
+ * There is no `tldr` field either, and there used to be one. A summary panel
+ * at the top of a post is an invitation to read the panel and skip the post,
+ * which is the opposite of why anything gets written here. `description`
+ * already gives a skimmer the one sentence it is owed. Do not add it back.
+ *
+ * Neither form gets its own collection, its own route or its own template —
+ * only its own row treatment and its own rail. */
+export const FORMS = ['post', 'project'] as const
 
 const writing = defineCollection({
 	schema: z.object({

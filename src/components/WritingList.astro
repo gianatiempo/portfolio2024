@@ -39,17 +39,14 @@ const { list, feature = false, showForm = true, class: className } = Astro.props
 		<ol class:list={['rows', className]}>
 			{list.map((entry: any, i: number) => {
 				const form = entry.data.form as keyof typeof forms
-				/* A note never takes the feature slot even when it is newest: the
-				   large row is a promise of something substantial, and a
-				   three-paragraph note landing in it under-delivers twice. */
-				const large = feature && i === 0 && form !== 'note'
+				const large = feature && i === 0
 				const beat = beats[entry.data.beat as keyof typeof beats]
 
 				/* What kind of thing this is, and — for a project — what state it is
 				   in. A post is the default and says nothing: under a "Posts"
 				   heading, or in a list that is mostly posts, a row announcing
-				   itself as a post is noise. A project and a note are not the
-				   default and both say so. */
+				   itself as a post is noise. A project is not the default, so it
+				   says so. */
 				const formLabel = showForm && form !== 'post' ? forms[form].label : null
 				const status = form === 'project' ? entry.data.status : null
 
@@ -65,16 +62,12 @@ const { list, feature = false, showForm = true, class: className } = Astro.props
 							</div>
 
 							<div>
-								<h3 class:list={['mb-3 flex items-baseline gap-3 transition-colors duration-300 group-hover:text-accent', large ? 'text-h2' : form === 'note' ? 'text-h3' : 'text-row']}>
+								<h3 class:list={['mb-3 flex items-baseline gap-3 transition-colors duration-300 group-hover:text-accent', large ? 'text-h2' : 'text-row']}>
 									{entry.data.title}
 									<span class="translate-x-[-0.4rem] text-h3 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">→</span>
 								</h3>
 
-								{entry.data.description && (
-									<p class:list={['max-w-[62ch] text-secondary', large && 'text-body-lg']}>
-										{entry.data.description}
-									</p>
-								)}
+								{entry.data.description && <p class:list={['max-w-[62ch] text-secondary', large && 'text-body-lg']}>{entry.data.description}</p>}
 
 								{/* A project lists its stack where a post lists its tags.
 								    Same treatment, because they answer the same question:

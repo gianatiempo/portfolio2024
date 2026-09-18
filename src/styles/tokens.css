@@ -76,7 +76,7 @@
 	/* The cool signal restated for a near-white ground. Evidence's own cyan is
 	   a 0.79-lightness hue and would run at about 1.7:1 here, so on the ground
 	   it becomes a deep teal of the same family. Same idea, legible either
-	   side. Used only for the `systems` beat marker. */
+	   side. Used only for the `backend` beat marker. */
 	--ground-accent-alt: oklch(0.518 0.104 212);
 
 	--ground-rule: oklch(0.158 0 0 / 0.12);
@@ -804,8 +804,8 @@ a:where(.time) {
    at 19px, 46rem is already ~77 characters and past that a line stops being
    readable. So the frame is filled by composition instead — a standing rail of
    metadata and contents on the left, prose at measure beside it, and the block
-   elements that genuinely benefit from width (code, tables, quotes, the tl;dr)
-   released to the full column. */
+   elements that genuinely benefit from width (code, tables, quotes) released
+   to the full column. */
 
 .longform {
 	--measure: 46rem;

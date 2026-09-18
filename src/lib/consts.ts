@@ -3,7 +3,7 @@ import type { Site } from '../types'
 export const SITE: Site = {
 	TITLE: 'Ariel Gianatiempo',
 	DESCRIPTION:
-		'Senior front-end engineer in Málaga. Nineteen years across both ends of the stack: eight on the server in Java, eleven in the browser, and front-end architecture for Openbank, J.P. Morgan and V3 Cybersecurity. Currently picking the server half back up in Python, and building features with a model inside them.',
+		'Senior Front-End engineer in Málaga. Nineteen years across both ends of the stack: eight on the server in Java, eleven in the browser, and Front-End architecture for Openbank, J.P. Morgan and V3 Cybersecurity. Currently picking the server half back up in Python, and building features with a model inside them.',
 	EMAIL: 'gianatiempo@gmail.com',
 	IMAGE: '/og.png',
 	TYPE: 'website',
@@ -28,23 +28,23 @@ export const SITE: Site = {
    single term a non-technical reader would have to look up. `summary` is
    layer two, and keeps the vocabulary. */
 export const beats = {
-	interface: {
-		label: 'Interface',
+	frontend: {
+		label: 'Front-End',
 		tone: 'warm',
 		plain: 'The part of the software people actually see and touch.',
-		summary: "The user's side of the wire. React, design systems, streaming output, and how you show uncertainty without hiding it."
+		summary: "The user's side of the thing. React, UI, design, and everything you can actually see."
 	},
-	systems: {
-		label: 'Systems',
+	backend: {
+		label: 'Back-End',
 		tone: 'cool',
 		plain: 'The machinery behind it, where the work happens out of sight.',
-		summary: 'Everything underneath. Python, APIs, retrieval, evals, and what a model-backed feature costs you when nobody is watching it.'
+		summary: 'The dark side of the same thing. Python, APIs, AI, and everything we sweep under the carpet.'
 	},
 	trajectory: {
 		label: 'Trajectory',
 		tone: 'ink',
-		plain: "Picking the server half back up, in a language I'm still learning.",
-		summary: "Coming back to the server after a decade in the browser, in Python rather than Java. What transfers, what doesn't, and what I get wrong on the way."
+		plain: 'The part where I talk about the nineteen years behind me.',
+		summary: "Past, present, and where I'm headed from here."
 	}
 } as const
 
@@ -68,7 +68,6 @@ export const beatTone: Record<Tone, string> = {
    sentence the archive header uses when the reader has filtered to one form. */
 export const forms = {
 	post: { label: 'Post', plain: 'The long version, worked out properly.' },
-	note: { label: 'Note', plain: 'Short. Something learned, or something that broke.' },
 	project: { label: 'Project', plain: 'A thing that exists, and what state it is actually in.' }
 } as const
 
@@ -87,40 +86,52 @@ export type Form = keyof typeof forms
 export const practice = [
 	{
 		label: 'Foundation',
-		status: 'Eleven years',
-		heading: 'Front-end architecture that holds',
-		plain: 'I build the parts of an application people actually see and use, mostly for banks, where getting it wrong costs somebody money the same day.',
-		body: "React and TypeScript in places where being wrong costs money. Four core areas of Openbank's homebanking platform, banking tooling at J.P. Morgan, security products at V3 Cybersecurity. Mostly migrations, rewrites, and arguing about standards. A 60% performance gain here, a refactor that cut reported bugs by 90% there, and every deprecated component gone across a team of six.",
+		status: 'Eight years',
+		heading: 'Web developer, Java and painful UI',
+		plain: 'I started here, learning the basics and always going after the ticket that involved the UI.',
+		body: "Java didn't have much of a UI in those days, and Wicket was the tool for the job. It was not pretty, and if something isn't pretty you're a lot less likely to love it.",
 		figures: [
-			{ value: '11', label: 'Years on the front end' },
+			{ value: '8', label: 'Years of Java' },
+			{ value: '2007', label: 'Where it all started' }
+		],
+		keywords: ['Java', 'Wicket', 'SVN']
+	},
+	{
+		label: 'Blooming',
+		status: 'Eleven years',
+		heading: 'From jQuery to Front-End architecture that holds',
+		plain: 'I build the parts of an application people actually see and use. Started in telcos, ended up enjoying banks... faster, more dynamic, wider.',
+		body: 'React and TypeScript in places where everyone else still sees COBOL. Banking tooling at J.P. Morgan, security products at V3 Cybersecurity. Mostly migrations, rewrites, and arguing about standards.',
+		figures: [
+			{ value: '11', label: 'Years on the Front-End' },
 			{ value: '60%', label: 'Faster after a rewrite' },
 			{ value: '90%', label: 'Fewer reported bugs' }
 		],
 		keywords: ['React', 'TypeScript', 'Hexagonal architecture', 'Component libraries', 'Technical leadership']
 	},
 	{
-		label: 'Returning',
-		status: 'In progress',
-		heading: 'Back to fullstack, through Python',
-		plain: "The server is where I started, and I'm going back to it — in a language I still have to learn properly.",
-		body: "My first eight years were Java back end. APIs, features, legacy migrations, mostly for airline and enterprise clients. Then AngularJS made the browser look like the interesting place to be, so I went, and I stayed eleven years. The server isn't new to me. I just haven't been there in a while, and the map has changed. Python is how I'm getting back.",
+		label: 'Mastery',
+		status: 'Reaching for it',
+		heading: 'Both ends of the stack, on purpose this time',
+		plain: 'Getting properly good at both halves of the job, the server one included.',
+		body: 'I started out Fullstack building web applications and I am finding my way back to it, so this strand is the aim rather than a badge. Four courses so far in 2026, Python and AI development, and nineteen years at my back while I do it. With AI as an ally, experience beats knowing every language, tool and trending library. Ask me again in a year.',
 		figures: [
-			{ value: '8', label: 'Years of Java' },
-			{ value: '2015', label: 'Left the server' }
+			{ value: '2', label: 'Ends of the stack' },
+			{ value: '4', label: 'Courses in 2026' }
 		],
-		keywords: ['Python', 'API design', 'Java background', 'Postgres', 'Testing']
+		keywords: ['Python', 'AI', 'Fullstack', 'Testing']
 	},
 	{
 		label: 'Building',
 		status: 'Shipping now',
 		heading: 'AI as an engineer, not a user',
-		plain: "I'm building a product on my own that has AI inside it — not AI helping me write the code, but AI as the thing the customer uses.",
-		body: "I made the case for a full product rewrite at V3, negotiated it, architected it, and I'm building it as the only developer. Building with AI is the only reason a scope that size is survivable. What I care about is everything that happens after the prompt: retrieval, evals, token budget, the streaming interface, and all the ways it falls over in front of a real user.",
+		plain: 'Shipping real things with Python and AI inside them, because that is the only way I actually get there.',
+		body: 'Getting my hands dirty with Python and every AI-related piece of logic, building the next generation of apps for companies and the people using them. A full product rewrite at V3 that I am building on my own, due to launch at the end of 2026, and this site. AI is the only reason one person can do either.',
 		figures: [
-			{ value: '1', label: 'Developer on it' },
-			{ value: '2026', label: 'Target launch' }
+			{ value: '1', label: 'Product rewrite, solo' },
+			{ value: '2026', label: 'Launch target' }
 		],
-		keywords: ['AI-assisted delivery', 'Model APIs', 'Retrieval', 'Evals', 'Streaming UI']
+		keywords: ['AI-assisted delivery', 'AI development', 'Model APIs', 'Retrieval', 'Evals', 'Streaming UI']
 	}
 ]
 
@@ -148,7 +159,7 @@ export const timeline = [
 		date: 'Apr 2023',
 		label: 'V3 Cybersecurity · the rewrite I argued for',
 		description:
-			"I rewrote the MVP when I arrived and got a 60% performance gain out of it. Then I spent months convincing leadership to let me rewrite the whole thing, frontend and backend. They said yes. I defined the layout and the product philosophy, directed the designer through Figma, specified the data contracts, and I'm now building the entire frontend on my own. Launch is meant to be the end of 2026.",
+			"I rewrote the MVP when I arrived and got a 60% performance gain out of it. Then I spent months convincing leadership to let me rewrite the whole thing, Front-End and Back-End. They said yes. I defined the layout and the product philosophy, directed the designer through Figma, specified the data contracts, and I'm now building the entire Front-End on my own. Launch is meant to be the end of 2026.",
 		figures: [
 			{ value: '60%', label: 'Faster MVP' },
 			{ value: '1', label: 'Developer on it' }
@@ -179,20 +190,24 @@ export const timeline = [
 		date: 'Sep 2018',
 		label: 'Globant · the React turn',
 		description:
-			'I led an internal product and pushed standards across the team. Then I got contracted out to J.P. Morgan, and that work turned into a permanent offer. This is also where React stopped being a tool I happened to use and became the thing I was actually good at.'
+			'I led an internal product and pushed standards across the team. Then I got contracted out to J.P. Morgan, and that work turned into a permanent offer. This is also where React stopped being a tool I happened to use and became the thing I was actually good at.',
+		figures: [
+			{ value: '1st', label: 'First time managing' },
+			{ value: '4 mo', label: 'Internal project' }
+		]
 	},
 	{
 		date: 'Mar 2015',
-		label: 'Redbee · crossing to the front end',
+		label: 'Redbee · crossing to the Front-End',
 		description:
-			"Full-stack work: API endpoints on one side, front-end components and services on the other. AngularJS was making the browser look like the fun place to be, so I crossed over. Eleven years later I'm still here. That was never the plan.",
+			"Fullstack work: API endpoints on one side, Front-End components and services on the other. AngularJS was making the browser look like the fun place to be, so I crossed over. Eleven years later I'm still here. That was never the plan.",
 		figures: [{ value: '11', label: 'Years in the browser' }]
 	},
 	{
 		date: 'May 2007',
-		label: 'Eight years of Java back end',
+		label: 'Eight years of Java Back-End',
 		description:
-			"Hewlett-Packard, FDV Solutions, GetSense, Cubika, Teracode. APIs, features and legacy migrations for airline and enterprise clients. People forget this part when someone says front-end developer, and it's the reason I keep saying I'm going back to the server instead of starting over on it.",
+			"Hewlett-Packard, FDV Solutions, GetSense, Cubika, Teracode. APIs, features and legacy migrations for airline and enterprise clients. People forget this part when someone says Front-End developer, and it's the reason I keep saying I'm going back to the server instead of starting over on it.",
 		figures: [
 			{ value: '8', label: 'Years on the server' },
 			{ value: '5', label: 'Companies' }
@@ -261,7 +276,7 @@ export const facts = [
    whether to get in touch needs first was the last thing on the page. It now
    appears in the hero, in every post's footer and in Contact, all from here. */
 export const availability = {
-	open: 'Open to fullstack and AI work',
+	open: 'Open to Front-End, Fullstack and AI work',
 	where: 'Remote, Europe',
 	status: 'Available'
 }
@@ -272,9 +287,9 @@ export const availability = {
    person deciding whether to forward it is frequently not an engineer. */
 export const identity = {
 	name: 'Ariel Gianatiempo',
-	role: 'Senior front-end engineer, with eight years on the server before that',
+	role: 'Senior Front-End engineer',
 	plain:
-		"I've spent nineteen years making complicated software easier to use — eight of them on the server, eleven in the browser. I'm picking the server half back up in Python, and building features that have a model inside them.",
+		"I've spent nineteen years making complicated software easier to use. Eight of them on the Back-End, eleven on the Front-End. I'm picking the Back-End half back up in Python, and building AI applications that follow what companies actually need.",
 	place: 'Málaga, Spain'
 }
 

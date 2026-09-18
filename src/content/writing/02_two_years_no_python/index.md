@@ -5,11 +5,6 @@ description: 'What happened between saying I would learn Python and actually sta
 date: 2026-09-14T00:00:00Z
 beat: 'trajectory'
 form: 'post'
-tldr:
-  - 'Last post I said I was going to re-learn Python and Django. Then I moved from Argentina to Spain and wrote exactly zero lines of Python.'
-  - 'Moving countries is easy for about two weeks. After that it is documents, permits, a timezone that does not work, and a new job.'
-  - 'While I was filling in forms, AI went from nobody being sure about it to a line in the annual bonus. The panic phase is over, which makes this a much better moment to start.'
-  - 'Python is still the way back to backend and fullstack, so that is what I am doing. In public, and with no promises about cadence.'
 categories: ['career']
 tags: ['python', 'ai', 'writing', 'spain']
 draft: false
@@ -53,11 +48,11 @@ Now the dust is starting to settle. AI is being used, ROI is measured in every c
 
 Python is a language that is everywhere. Easy to write, easier to read, and a lot of modern things are being built around it.
 
-Yes, I know about Go, Rust and all that stuff, but Python is still undisputed... for some reason nobody seems to have a real need to change something that already works well enough. So Python is the one thing that stood through the storm. Learning it is as valid as it always was, and it opens the way back to backend, to fullstack, and now to AI as well.
+Yes, I know about Go, Rust and all that stuff, but Python is still undisputed... for some reason nobody seems to have a real need to change something that already works well enough. So Python is the one thing that stood through the storm. Learning it is as valid as it always was, and it opens the way back to Back-End, to Fullstack, and now to AI as well.
 
 On top of that, AI looks like something that is going to become more and more part of our day to day, unlike blockchain and the whole crypto wave before it. (Again, it is used in plenty of places for plenty of things, but we are not living in the blockchain world we were promised a few years ago.)
 
-So this is me closing a loop, coming back home, from my web developer days, to frontend, to fullstack and AI.
+So this is me closing a loop, coming back home, from my web developer days, to Front-End, to Fullstack and AI.
 
 ## So... what am I doing?
 

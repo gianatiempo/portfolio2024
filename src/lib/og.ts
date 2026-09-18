@@ -33,7 +33,8 @@ const COLOR = {
 	inkText: '#eef2f5', // --ev-text-primary
 	inkTertiary: '#8e99a2', // --ev-text-tertiary
 	inkAccent: '#2ad4d7', // --ev-accent
-	inkAccentAlt: '#ffa370' // --ev-accent-alt
+	inkAccentAlt: '#ffa370', // --ev-accent-alt
+	rule: '#c9c5c1' // --ground-rule-strong, flattened: satori has no alpha compositing on borders
 } as const
 
 /* Read straight out of node_modules at build time. Satori takes ttf/otf/woff
@@ -91,6 +92,7 @@ export async function renderCard({ title, kicker, beat, meta }: CardOptions): Pr
 	const tree = el(
 		'div',
 		{
+			position: 'relative',
 			width: 1200,
 			height: 630,
 			display: 'flex',
@@ -101,6 +103,15 @@ export async function renderCard({ title, kicker, beat, meta }: CardOptions): Pr
 			fontFamily: 'JetBrains Mono'
 		},
 		[
+			/* The spine, and the tick that hangs the kicker row off it. On the site
+			   the line carries reading position; a still card has nothing to be
+			   partway through, so it is drawn at its rest state — one unbroken
+			   hairline, which is exactly what the page renders under reduced
+			   motion. Same geometry as scripts/og-card.html: line at x=40, tick
+			   closing 14px short of the 72px content edge. */
+			el('div', { position: 'absolute', top: 0, left: 40, width: 2, height: 630, backgroundColor: COLOR.rule }),
+			el('div', { position: 'absolute', top: 78, left: 40, width: 18, height: 2, backgroundColor: COLOR.rule }),
+
 			el('div', { display: 'flex', justifyContent: 'space-between', alignItems: 'center' }, [
 				el('div', { display: 'flex', fontSize: 22, fontWeight: 600, letterSpacing: '0.16em', color: COLOR.primary }, 'ARIEL GIANATIEMPO'),
 				el('div', { display: 'flex', fontSize: 22, fontWeight: 500, letterSpacing: '0.16em', color: COLOR.tertiary }, kicker.toUpperCase())
