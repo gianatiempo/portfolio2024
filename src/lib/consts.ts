@@ -88,7 +88,8 @@ export const practice = [
 		label: 'Foundation',
 		status: 'Eight years',
 		heading: 'Web developer, Java and painful UI',
-		plain: 'Java, Spring, Hibernate and a lot of MySQL. APIs, new features and legacy migrations for telcos, an airline and a long list of enterprise clients I could not put in the right order today. Somewhere in there I started volunteering for every ticket that touched the UI, which is pretty much how the next eleven years happened.',
+		plain:
+			'Java, Spring, Hibernate and a lot of MySQL. APIs, new features and legacy migrations for telcos, an airline and a long list of enterprise clients I could not put in the right order today. Somewhere in there I started volunteering for every ticket that touched the UI, which is pretty much how the next eleven years happened.',
 		figures: [
 			{ value: '8', label: 'Years of Java' },
 			{ value: '2007', label: 'Where it all started' }
@@ -122,7 +123,8 @@ export const practice = [
 		label: 'Building',
 		status: 'Day one',
 		heading: 'AI as an engineer, not a user',
-		plain: "Small things, written in Python, with a model doing actual work inside them instead of just helping me type. Retrieval, evals, streaming responses... that list is what I'm working through right now, not a set of things I already know. First ones go up on GitHub shortly, and they will look exactly like what they are.",
+		plain:
+			"Small things, written in Python, with a model doing actual work inside them instead of just helping me type. Retrieval, evals, streaming responses... that list is what I'm working through right now, not a set of things I already know. First ones go up on GitHub shortly, and they will look exactly like what they are.",
 		figures: [
 			{ value: '1', label: 'Product rewrite, solo' },
 			{ value: '2026', label: 'Launch target' }
@@ -178,8 +180,7 @@ export const timeline = [
 			'Promoted twice here. I led three React developers, then six, through a Flex-to-React migration that killed every deprecated component in eight months. I also ran a six-developer internship programme from analysis all the way to production, cut local build time in half, and ran an internal React best-practices group.',
 		figures: [
 			{ value: '3→6', label: 'Developers I led' },
-			{ value: '8 mo', label: 'To finish it' },
-			{ value: '50%', label: 'Faster local builds' }
+			{ value: '8 mo', label: 'To finish it' }
 		]
 	},
 	{
@@ -197,7 +198,7 @@ export const timeline = [
 		label: 'Redbee · crossing to the Front-End',
 		description:
 			"Fullstack work: API endpoints on one side, Front-End components and services on the other. AngularJS was making the browser look like the fun place to be, so I crossed over. Eleven years later I'm still here. That was never the plan.",
-		figures: [{ value: '11', label: 'Years in the browser' }]
+		figures: [{ value: '11', label: 'Years in the browser started here' }]
 	},
 	{
 		date: 'May 2007',
@@ -297,7 +298,7 @@ export const certifications = [
 	{ year: '2026', name: 'Claude Platform 101 & Claude Code 101', issuer: 'Anthropic' },
 	{ year: '2026', name: 'AWS Certified Cloud Practitioner (exam prep)', issuer: 'LinkedIn' },
 	{ year: '2024', name: 'Python for Data Science, AI & Development', issuer: 'IBM' },
-	{ year: '2024', name: 'EF SET English Certificate (C2 Proficient)', issuer: 'EF SET' },
+	{ year: '2024', name: 'EF SET English Certificate (C2 Proficient)', issuer: 'EF SET' }
 ]
 
 /* Four items, and every one of them a place rather than a scroll position.

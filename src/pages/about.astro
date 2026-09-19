@@ -6,6 +6,7 @@ import Testimonials from '@components/Testimonials.astro'
 import Milestones from '@components/Milestones.astro'
 import Availability from '@components/Availability.astro'
 import Evidence from '@components/Evidence.astro'
+import SectionHead from '@components/SectionHead.astro'
 import enso from '../assets/enso.png'
 import aikido from '../assets/aikido.png'
 import { certifications, facts, practice, SITE } from '@lib/consts'
@@ -100,11 +101,10 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 		     The dropped prose is still in `practice[].body` in src/lib/consts.ts,
 		     untouched. Putting it back is one line if this reads too thin. -->
 		<section class="shell shell-river py-section-tight">
-			<header class="section-head" data-rise>
-				<p class="label tick text-accent">Practice</p>
-				<h2 class="measure">What I do, and how new I am at it.</h2>
-				<p class="measure mt-2 text-secondary">Four strands. One I did for eight years, one I have done for eleven, one I am aiming at, and one I am building right now to get there.</p>
-			</header>
+			<SectionHead eyebrow="Practice" tick split>
+				<h2 class="measure-wide">What I do, and how new I am at it.</h2>
+				<p slot="note" class="max-w-[34ch] text-secondary">Four strands. One I did for eight years, one I have done for eleven, one I am aiming at, and one I am building right now to get there.</p>
+			</SectionHead>
 
 			<div class="rows">
 				{
@@ -136,28 +136,23 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 		<Milestones />
 
 		<section class="shell shell-river py-section-tight">
-			<header class="section-head" data-rise>
-				<p class="label tick text-accent">How it started</p>
-				<h2 class="measure">The jobs that never made it onto the CV.</h2>
-			</header>
+			<SectionHead eyebrow="How it started" tick split>
+				<h2 class="measure-wide">The jobs that never made it onto the CV.</h2>
+			</SectionHead>
 
 			<div class="grid grid-cols-[minmax(0,1fr)] gap-x-16 gap-y-6 lg:grid-cols-2" data-rise>
 				<div class="space-y-5 text-secondary">
 					<p>
-						In 2007 I was writing software for Catholic schools in Europe, a network that covered most of the schools in the country. I've genuinely forgotten which country. After that, systems for
-						the Italian government, and then a run of jobs I couldn't put in the right order today if you asked me to.
+						In 2007 I was writing software for Catholic schools in Europe. I've genuinely forgotten which country. After that, systems for the Italian government, and then a run of jobs I couldn't put
+						in the right order today if you asked me to.
 					</p>
-					<p>
-						The one I remember properly is Hewlett-Packard, working on American Airlines' frequent-flyer programme. It sent me to Dallas Fort Worth twice, which at that age felt like the entire point
-						of having a job.
-					</p>
+					<p>The one I remember properly is Hewlett-Packard, working on American Airlines' frequent-flyer programme. It sent me to Dallas Fort Worth twice, which I loved.</p>
 				</div>
 				<div class="space-y-5 text-secondary">
 					<p>
-						Then Redbee, where Java and AngularJS sat on the same desk for the first time and the browser slowly started looking better than the server. A few moves later, Globant. That's where I
-						taught myself React from a course, and where the version of my career people actually read about starts.
+						Then Redbee, where the Back-End took a step back (pun intended), AngularJS got the front row, and the browser slowly started looking prettier (I did it again). A few moves and a few trends
+						later, I taught myself React from a course and there was no way back. Going back to Python now is me going back to where it all started.
 					</p>
-					<p>Eight years on the server, eleven in the browser. Going back to Python now is me closing a loop I left open in 2015.</p>
 				</div>
 			</div>
 		</section>
@@ -168,10 +163,9 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 		     scrolled off the top reads as a broken link. `scroll-mt-24` clears the
 		     fixed header, same as every other anchored section on the site. -->
 		<section class="shell shell-river scroll-mt-24 py-section" id="enso">
-			<header class="section-head" data-rise>
-				<p class="label tick text-accent">Off the screen</p>
-				<h2 class="measure">Two ideas from aikido that I still use.</h2>
-			</header>
+			<SectionHead eyebrow="Off the screen" tick split>
+				<h2 class="measure-wide">Two ideas from aikido that I still use.</h2>
+			</SectionHead>
 
 			<!-- Two panels divided by a rule rather than two cards floating on the
 			     page. Same hairline system as every other list here. -->
@@ -183,8 +177,8 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 						<p class="label mb-3 text-accent">正勝吾勝 · Masakatsu agatsu</p>
 						<p class="mb-4 font-display text-h3 leading-snug text-primary">True victory is victory over oneself.</p>
 						<p class="text-secondary">
-							I briefly trained in aikido many years ago, and read a lot more than I trained. Budo, bushido, all the philosophy behind the technique.
-							Be better today than you were yesterday. It's the only kind of competition I've ever found useful.
+							I briefly trained in aikido many years ago, and read a lot more than I trained. Budo, bushido, all the philosophy behind the technique. Be better today than you were yesterday. It's the
+							only kind of competition I've ever found useful.
 						</p>
 					</div>
 				</article>
@@ -196,8 +190,8 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 						<p class="label mb-3 text-accent">円相 · Ensō</p>
 						<p class="mb-4 font-display text-h3 leading-snug text-primary">One stroke, left open.</p>
 						<p class="text-secondary">
-							An ensō is a hand-drawn circle, one stroke, left open. Open means imperfect, which means it can still change. Same as everything else...
-							it could always be better, but something delivered beats perfection that never arrives.
+							An ensō is a hand-drawn circle, one stroke, left open. Open means imperfect, which means it can still change. Same as everything else... it could always be better, but something
+							delivered beats perfection that never arrives.
 						</p>
 					</div>
 				</article>
@@ -209,11 +203,10 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 		     the full-bleed band it used to be: the claim above it stays on the
 		     ground in the reading voice, and only the receipts are raised. -->
 		<section class="shell shell-river py-section">
-			<header class="section-head" data-rise>
-				<p class="label tick text-accent">Keeping current</p>
-				<h2 class="measure">What I've been studying.</h2>
-				<p class="measure mt-2 text-secondary">The 2026 entries are me putting something behind the Python and AI claims.</p>
-			</header>
+			<SectionHead eyebrow="Keeping current" tick split>
+				<h2 class="measure-wide">What I've been studying.</h2>
+				<p slot="note" class="max-w-[34ch] text-secondary">The 2026 entries are me putting something behind the Python and AI claims.</p>
+			</SectionHead>
 
 			<Evidence label="Courses and certifications" bodyClass="px-6 sm:px-7" data-rise>
 				<ol>
@@ -236,7 +229,7 @@ import { certifications, facts, practice, SITE } from '@lib/consts'
 			id="contact"
 			eyebrow="What I'm after"
 			heading="Fullstack work with AI in it."
-			body="Remote, in Europe, and fintech if I get to pick, because I already know where the bodies are buried in that one. Ideally somewhere the Front-End and the model layer are one conversation instead of two teams. That's the spot where nineteen years of untangling dense things actually pays off. And I'm happy to talk to anyone else making the same move."
+			body="Remote, in Europe, and fintech if I get to pick (been there, loved that). Ideally somewhere I can grow into Fullstack and AI. And I'm happy to talk to anyone else making the same move."
 		/>
 	</main>
 </Layout>
